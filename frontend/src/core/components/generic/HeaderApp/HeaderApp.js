@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import settingsService from "../../../../settingsService"
@@ -16,25 +16,28 @@ import { coreUrls } from "../../../lib/api/urls";
  *  of header app.
  * Dont change this file!!!
  */
-const HeaderApp = () => {
-    const [showModalLegend, setShowModalLegend] = useState(false)
-
+const HeaderApp = (props) => {
+    console.log(props)
+    console.log(props.isShowLegend)
     return (
         <div>
             <ModalWindow
                 title={coreDescriptions.LEGEND}
                 body={<TableLegend data={legend} />}
-                show={showModalLegend}
-                onHide={setShowModalLegend}
-                ButtonsBar={<BarClose onHide={setShowModalLegend} />}
+                show={props.isShowLegend}
+                onHide={props.hideLegend}
+                ButtonsBar={<BarClose onHide={props.hideLegend} />}
             />
             <Navbar bg={"light"} expand={"lg"}>
                 <Navbar.Brand href={settingsService.domainUrl}>{settingsService.title}</Navbar.Brand>
                 <Navbar.Toggle aria-controls={"basic-navbar-nav"} />
                 <Navbar.Collapse className={"justify-content-end"} id={"basic-navbar-nav"}>
                     <Nav>
-                        <Nav.Link href={coreRoutes.HASH.url} onClick={() => setShowModalLegend(true)}>
+                        <Nav.Link href={coreRoutes.HASH.url} onClick={props.showLegend}>
                             <i className={coreIcons.QUORA} title={coreDescriptions.LEGEND} /> Легенда
+                        </Nav.Link>
+                        <Nav.Link href={coreRoutes.HASH.url} onClick={props.showLegend}>
+                            <i className={coreIcons.QUORA} title={coreDescriptions.LEGEND} /> {String(props.isShowLegend)}
                         </Nav.Link>
                         <Nav.Link href={coreRoutes.ROOT.url}>
                             <i className={coreIcons.STAR} title={coreDescriptions.ALL_SERVICES} /> Все сервисы
