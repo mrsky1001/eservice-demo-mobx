@@ -1,0 +1,35 @@
+.accordion__arrow {
+  display: inline !important;
+}
+
+.accordion__button {
+  background-color: transparent !important;
+}
+
+.accordion__button:hover {
+  background-color: #f4f4f4 !important;
+}
+
+
+%table-legend {
+  text-align: center;
+  vertical-align: middle !important;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+.table-legend-header {
+  @extend %table-legend
+}
+
+.table-legend-content {
+  .btn-toolbar {
+    background-color: white;
+
+    button {
+      margin: 5px;
+    }
+  }
+
+  @extend %table-legend
+}
+

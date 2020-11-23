@@ -1,0 +1,27 @@
+%template-columns-factory {
+  text-align: center;
+  vertical-align: middle !important;
+  //padding: 10px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #dee2e6 !important;
+
+  font-size: 0.8rem;
+
+  i {
+    font-size: 1.2rem;
+  }
+
+  .nav-links-button {
+    margin: 0 0 0 5px !important;
+  }
+}
+
+.template-columns-factory-header {
+  @extend %template-columns-factory
+}
+
+.template-columns-factory-content {
+  @extend %template-columns-factory;
+}
+
+
