@@ -3,8 +3,8 @@
  * You need create file "routes.js" into src/api and use "(new Routes({ your routes})).list"
  * @param obj - the object of manually list routes
  */
-import Address from "./address";
-import { coreExceptions } from "../templates/exceptions/exceptions";
+import Address from "./address"
+import { coreExceptions } from "../templates/exceptions/exceptions"
 
 class Routes {
     constructor(obj = {}) {

@@ -17,11 +17,11 @@ class Exceptions {
         }
 
         this._list.ERROR_GET = (param = "") => {
-            return new MyException(2, "GET: Ошибка, не удалось получить данные!" + param)
+            return new MyException(2, "Ошибка, не удалось получить данные!" + param)
         }
 
         this._list.ERROR_POST = (param = "") => {
-            return new MyException(2, "POST: Ошибка, не удалось отправить(запросить) данные!" + param)
+            return new MyException(2, "Ошибка, не удалось отправить(запросить) данные!" + param)
         }
 
         this._list.EMPTY_PARAMS_WARNING = (param = "") => {
@@ -45,39 +45,39 @@ class Exceptions {
         }
 
         this._list.GETTING_DATA = (param = "") => {
-            return new MyException(8, "GET: Получение данных с сервера..." + param)
+            return new MyException(8, "Получение данных с сервера..." + param)
         }
 
         this._list.GETTING_SUCCESS = (param = "") => {
-            return new MyException(9, "GET: Получение данных с сервера завершилось успешно!" + param)
+            return new MyException(9, "Получение данных с сервера завершилось успешно!" + param)
         }
 
         this._list.POSTING_DATA = (param = "") => {
-            return new MyException(10, "POST: Отправка(запрос) данных на сервер..." + param)
+            return new MyException(10, "Отправка(запрос) данных на сервер..." + param)
         }
 
         this._list.POSTING_SUCCESS = (param = "") => {
-            return new MyException(11, "POST: Отправка(запрос) данных завершился успешно!" + param)
+            return new MyException(11, "Отправка(запрос) данных завершился успешно!" + param)
         }
 
         this._list.PUTTING_DATA = (param = "") => {
-            return new MyException(12, "PUT: Запрос на изменение данных..." + param)
+            return new MyException(12, "Запрос на изменение данных..." + param)
         }
 
         this._list.PUTTING_SUCCESS = (param = "") => {
-            return new MyException(13, "PUT: Запрос на изменение данных завершился успешно!" + param)
+            return new MyException(13, "Запрос на изменение данных завершился успешно!" + param)
         }
 
         this._list.DELETING_DATA = (param = "") => {
-            return new MyException(14, "DELET: Запрос на удаление данных..." + param)
+            return new MyException(14, "Запрос на удаление данных..." + param)
         }
 
         this._list.DELETING_SUCCESS = (param = "") => {
-            return new MyException(15, "DELET: Запрос на удаление данных завершился успешно!" + param)
+            return new MyException(15, "Запрос на удаление данных завершился успешно!" + param)
         }
 
         this._list.DELETING_SUCCESS = (param = "") => {
-            return new MyException(15, "DELET: Запрос на удаление данных завершился успешно!" + param)
+            return new MyException(15, "Запрос на удаление данных завершился успешно!" + param)
         }
     }
 

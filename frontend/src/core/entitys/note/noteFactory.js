@@ -1,5 +1,5 @@
-import getEntityFactory from "../Etity/EntityFactory"
-import Note from "./Note"
+import getEntityFactory from "../entity/entityFactory"
+import Note from "./note"
 
 class NoteFactory extends getEntityFactory(Note) {
     constructor(list) {

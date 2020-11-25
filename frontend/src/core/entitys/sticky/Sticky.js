@@ -1,4 +1,4 @@
-import Entity from "../Etity/Entity"
+import Entity from "../entity/entity"
 
 class Sticky extends Entity {
     constructor(object, parent) {

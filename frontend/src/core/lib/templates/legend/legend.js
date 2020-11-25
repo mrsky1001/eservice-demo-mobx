@@ -4,9 +4,9 @@
  * @param obj - the object of manually list legend
  * @param isUseMainLegend - if true when the main list used else used only manually list
  */
-import makeId from "../../common/makeId";
-import { coreIcons } from "../icons/icons";
-import { coreDescriptions } from "../descriptions/descriptions";
+import makeId from "../../common/makeId"
+import { coreIcons } from "../icons/icons"
+import { coreDescriptions } from "../descriptions/descriptions"
 
 class Legend {
     constructor(obj = [], isUseMainLegend = true) {

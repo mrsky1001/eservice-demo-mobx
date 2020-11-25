@@ -1,4 +1,4 @@
-import getEntityFactory from "../Etity/EntityFactory"
+import getEntityFactory from "../entity/entityFactory"
 import Sticky from "./Sticky"
 
 class StickyFactory extends getEntityFactory(Sticky) {

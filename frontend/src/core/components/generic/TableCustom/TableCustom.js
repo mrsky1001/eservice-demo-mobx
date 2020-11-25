@@ -10,7 +10,7 @@ import paginationFactory, {
     PaginationProvider,
     SizePerPageDropdownStandalone,
 } from "react-bootstrap-table2-paginator"
-import OptionsPaginationFactory from "../../../lib/templates/optionsPagination/optionsPaginationFactory";
+import OptionsPaginationFactory from "../../../lib/templates/optionsPaginationFactory/optionsPaginationFactory";
 import SettingsTable from "../../../lib/localStorage/settingsTable";
 import LoaderOverlay from "../LoaderOverlay/LoaderOverlay";
 import SearchCustom from "../SearchCustom/SearchCustom";

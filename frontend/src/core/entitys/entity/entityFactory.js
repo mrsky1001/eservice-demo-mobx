@@ -4,15 +4,15 @@
  * Dont change this file!!!
  */
 
-import { actionsReducer } from "../../lib/Reducer/ReducerFactory"
+import { actionsReducer } from "../../lib/templates/reducerFactory/reducerFactory"
 
 const getEntityFactory = entity => {
     return class EntityFactory {
-        constructor(list = []) {
+        constructor(list = [], withReplace = false) {
             this._listEmptyTag = ["", undefined]
-            this._listExcludedTag = ["_parent", "_listEmptyTag", "_listExcludedTag"]
+            this._listExcludedTag = ["_parent", "_listEmptyTag", "_listExcludedTag", "_originId"]
 
-            this._list = this.parseList(list)
+            this._list = this.parseList(list, withReplace)
             this._selected = this.first
             this._listChanges = []
             this._listErrors = []
@@ -87,6 +87,15 @@ const getEntityFactory = entity => {
             this._countErrors = value
         }
 
+        groupsBy(nameProp = "id") {
+            const listProp = [...new Set(this.list.map(item => item[nameProp]))]
+            return listProp.map(prop => this.list.filter(_ => _[nameProp] === prop))
+        }
+
+        groupBy(value, nameProp = "id") {
+            return this.list.filter(_ => _[nameProp] === value)
+        }
+
         addError(competence) {
             if (!this._listErrors.includes(competence)) {
                 this._listErrors.push(competence)
@@ -133,7 +142,7 @@ const getEntityFactory = entity => {
             if (obj.id !== source.id && "json" in obj) res = obj.json
             else
                 Object.keys(obj).forEach(key => {
-                    if (!this._listExcludedTag.includes(key)) {
+                    if (this._listExcludedTag.find(_ => _.includes(key)) === undefined) {
                         try {
                             if (Array.isArray(obj[key])) {
                                 res[replacePrivateSymbol(key)] = []
@@ -145,8 +154,8 @@ const getEntityFactory = entity => {
                                 })
                             } else if (typeof obj[key] === "object" && obj[key] !== null && "json" in obj[key])
                                 res[replacePrivateSymbol(key)] = obj[key].json
-                            else if (replacePrivateSymbol(key) === "id" && String(obj["srcId"]).length > 0)
-                                res[replacePrivateSymbol(key)] = obj["srcId"]
+                            else if (replacePrivateSymbol(key) === "id" && String(obj["originId"]).length > 0)
+                                res[replacePrivateSymbol(key)] = obj["originId"]
                             else res[replacePrivateSymbol(key)] = obj[key]
                         } catch (e) {
                             console.log(e)
@@ -199,7 +208,7 @@ const getEntityFactory = entity => {
             return obj
         }
 
-        parseList(list) {
+        parseList(list, withReplace) {
             let arr = list
 
             if (typeof list === "object" && list.constructor.name === this.constructor.name) {
@@ -209,7 +218,7 @@ const getEntityFactory = entity => {
             }
 
             return arr.map(elem => {
-                return new entity(elem, this)
+                return new entity(elem, this, withReplace)
             })
         }
 

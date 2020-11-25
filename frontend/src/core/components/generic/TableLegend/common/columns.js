@@ -1,7 +1,7 @@
 import "../TableLegend.scss"
 
 import React from "react"
-import ColumnsFactory from "../../../../lib/templates/columns/columnsFactory";
+import ColumnsFactory from "../../../../lib/templates/columnsFactory/columnsFactory";
 
 class Columns extends ColumnsFactory {
     constructor(obj = {}) {

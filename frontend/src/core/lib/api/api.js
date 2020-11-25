@@ -1,12 +1,12 @@
 import axios from "axios/index"
 
-
 import history from "./createBrowserHistory"
 import { toast } from "react-toastify"
-import { coreUrls } from "./urls";
-import Toaster from "../toaster/toaster";
-import { coreExceptions } from "../generic/exceptions/exceptions";
-import Address from "./address";
+import { coreUrls } from "./urls"
+import Toaster from "../toaster/toaster"
+import { coreExceptions } from "../templates/exceptions/exceptions"
+import Address from "./address"
+import CustomError from "../templates/exceptions/customError"
 
 /**
  * API
@@ -65,7 +65,7 @@ class Api {
             } else if (error.response.status === 404) {
                 history.push(coreUrls.DOMAIN.urlForGet)
             } else {
-                history.push(coreUrls.ROOT.urlForGet)
+                history.push(coreUrls.DOMAIN.urlForGet)
             }
 
         throw new Error(error)

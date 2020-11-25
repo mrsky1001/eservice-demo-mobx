@@ -13,12 +13,9 @@ import { coreUrls } from "../../../lib/api/urls";
 
 /**
  * HeaderApp
- *  of header app.
  * Dont change this file!!!
  */
 const HeaderApp = (props) => {
-    console.log(props)
-    console.log(props.isShowLegend)
     return (
         <div>
             <ModalWindow
@@ -28,16 +25,13 @@ const HeaderApp = (props) => {
                 onHide={props.hideLegend}
                 ButtonsBar={<BarClose onHide={props.hideLegend} />}
             />
-            <Navbar bg={"light"} expand={"lg"}>
+            <Navbar bg={"light"} expand={"sm"}>
                 <Navbar.Brand href={settingsService.domainUrl}>{settingsService.title}</Navbar.Brand>
                 <Navbar.Toggle aria-controls={"basic-navbar-nav"} />
                 <Navbar.Collapse className={"justify-content-end"} id={"basic-navbar-nav"}>
                     <Nav>
                         <Nav.Link href={coreRoutes.HASH.url} onClick={props.showLegend}>
                             <i className={coreIcons.QUORA} title={coreDescriptions.LEGEND} /> Легенда
-                        </Nav.Link>
-                        <Nav.Link href={coreRoutes.HASH.url} onClick={props.showLegend}>
-                            <i className={coreIcons.QUORA} title={coreDescriptions.LEGEND} /> {String(props.isShowLegend)}
                         </Nav.Link>
                         <Nav.Link href={coreRoutes.ROOT.url}>
                             <i className={coreIcons.STAR} title={coreDescriptions.ALL_SERVICES} /> Все сервисы

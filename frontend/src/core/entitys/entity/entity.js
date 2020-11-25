@@ -1,5 +1,5 @@
-import makeId from "../../lib/tools/makeId"
 import moment from "moment"
+import makeId from "../../lib/common/makeId"
 
 /**
  * Entity
@@ -8,22 +8,43 @@ import moment from "moment"
  */
 
 class Entity {
-    constructor(object = {}, parent = {}) {
-        const srcId = object.id
-        makeId(object, undefined, true)
+    /**
+     * Constructor
+     * @object [object, array] - original data
+     * @parent [object] - the parent factory object
+     *
+     * @srcId  - the original identifier of the object
+     * @id - the local generated id property only for components
+     */
+    constructor(object = {}, parent = {}, withReplace = false) {
+        makeId(object, undefined, withReplace)
 
         Object.keys(object).forEach(key => {
             this[key.startsWith("_") ? key : "_" + key] = object[key]
         })
 
-        this._srcId = this.parseField(srcId, "")
+        this._id = this.parseField(this._id, "")
+        this._originId = this.parseField(this._originId, "")
         this._isSticky = this.parseField(this.isSticky, false)
+        this._isSelected = this.parseField(this._isSelected, false)
         this._rowIndex = this.parseField(this.rowIndex, 0)
         this._parent = parent
     }
 
-    get srcId() {
-        return this._srcId
+    get originId() {
+        return this._originId
+    }
+
+    get isSelected() {
+        return this._isSelected
+    }
+
+    set isSelected(value) {
+        if (value === true) {
+            this._parent.list.forEach(elem => (elem.isSelected = false))
+        }
+
+        this._isSelected = value
     }
 
     get rowIndex() {

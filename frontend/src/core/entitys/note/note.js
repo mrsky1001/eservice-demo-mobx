@@ -1,4 +1,4 @@
-import Entity from "../etity/entity";
+import Entity from "../entity/entity"
 
 class Note extends Entity {
     constructor(object, parent) {

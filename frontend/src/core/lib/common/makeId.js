@@ -4,7 +4,7 @@
  * Dont change this file!!!
  */
 
-const makeId = function makeId(array = "", template, isImportant = false) {
+const makeId = function makeId(array = "", template, withReplace = false) {
     function make() {
         let text = template !== undefined ? template : "",
             possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -16,7 +16,7 @@ const makeId = function makeId(array = "", template, isImportant = false) {
 
         let flag = true
 
-        if (!isImportant)
+        if (!withReplace)
             if (Array.isArray(array)) {
                 array.forEach(function(elem2) {
                     if (elem2.id !== undefined && String(elem2.id).indexOf(text) >= 0) {
@@ -45,7 +45,8 @@ const makeId = function makeId(array = "", template, isImportant = false) {
         })
     } else if (typeof array === "object" && array !== null) {
         try {
-            if (array.id === undefined) {
+            if (array.id === undefined || (withReplace && array.originId === undefined)) {
+                array.originId = array.id
                 array.id = make()
             }
         } catch (e) {

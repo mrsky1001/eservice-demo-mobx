@@ -1,5 +1,5 @@
-import MyException from "../templates/exceptions/myException";
-import { coreExceptions } from "../templates/exceptions/exceptions";
+import MyException from "../templates/exceptions/myException"
+import { coreExceptions } from "../templates/exceptions/exceptions"
 
 /**
  * Address of address for url of backend.

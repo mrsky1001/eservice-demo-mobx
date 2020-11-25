@@ -14,6 +14,7 @@ import { Provider } from "mobx-react";
 import { configure } from "mobx";
 
 import modalStore from "../../../store/modalStore";
+import toasterStore from "../../../store/toasterStore";
 
 /**
  * App
@@ -22,15 +23,10 @@ import modalStore from "../../../store/modalStore";
  */
 configure({ enforceActions: "always" });
 
-const stores = { modalStore };
+const stores = { modalStore, toasterStore };
 
 const App = () => {
     registerLocale("ru", ru)
-
-    const optionsToaster = {
-        autoClose: 8000,
-        toastClassName: "toast-style",
-    }
 
     return (
         <Provider {...stores}>
@@ -39,7 +35,7 @@ const App = () => {
                 <Container className={"mt-5"}>
                     <Router/>
                 </Container>
-                <ToastContainer {...optionsToaster} />
+                <ToastContainer {...toasterStore.optionsToaster} />
             </div>
         </Provider>
     )

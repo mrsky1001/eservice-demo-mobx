@@ -3,8 +3,7 @@
  *  settings of app reducers.
  * Dont change this file!!!
  */
-import { coreExceptions } from "../exceptions/exceptions";
-
+import { coreExceptions } from "../exceptions/exceptions"
 
 export const initReducer = initState => {
     return initState

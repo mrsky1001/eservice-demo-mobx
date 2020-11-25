@@ -1,24 +1,20 @@
 import { action, computed, observable } from 'mobx';
 
 class ModalStore {
-    @observable show = false;
+    @observable _show = false;
 
     @computed get isShow() {
-        console.log("isShow")
-        return this.show;
+        return this._show;
     }
 
-    @action('toggle left panel')
+    @action
     open() {
-        console.log("open")
-        this.show = true;
+        this._show = true;
     }
 
-    @action('show left panel')
+    @action
     close() {
-        console.log("clos")
-
-        this.show = false;
+        this._show = false;
     }
 }
 
