@@ -6,12 +6,12 @@ import "react-toastify/dist/ReactToastify.css"
 import React from 'react'
 import Container from "react-bootstrap/Container";
 import Router from "../../../../app/components/Router/Router";
-import { ToastContainer } from "react-toastify";
-import { registerLocale } from "react-datepicker"
+import {ToastContainer} from "react-toastify";
+import {registerLocale} from "react-datepicker"
 import ru from "date-fns/locale/ru"
-import HeaderApp from "../HeaderApp/index";
-import { Provider } from "mobx-react";
-import { configure } from "mobx";
+import HeaderApp from "../HeaderApp/HeaderApp";
+import {inject, observer, Provider} from "mobx-react";
+import {configure} from "mobx";
 
 import modalStore from "../../../store/modalStore";
 import toasterStore from "../../../store/toasterStore";
@@ -21,11 +21,11 @@ import toasterStore from "../../../store/toasterStore";
  * Main component of app.
  * Dont change this file!!!
  */
-configure({ enforceActions: "always" });
+configure({enforceActions: "always"});
 
-const stores = { modalStore, toasterStore };
+const stores = {modalStore, toasterStore};
 
-const App = () => {
+const App = (props) => inject('modalStore')(observer(({toasterStore}) => {
     registerLocale("ru", ru)
 
     return (
@@ -39,7 +39,7 @@ const App = () => {
             </div>
         </Provider>
     )
-}
+}))
 
 export default App
 

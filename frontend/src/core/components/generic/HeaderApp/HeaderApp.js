@@ -10,27 +10,28 @@ import { coreIcons } from "../../../lib/templates/icons/icons";
 import { coreRoutes } from "../../../lib/api/routes";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import { coreUrls } from "../../../lib/api/urls";
+import {inject, observer} from "mobx-react";
 
 /**
  * HeaderApp
  * Dont change this file!!!
  */
-const HeaderApp = (props) => {
+const HeaderApp =  (props) => inject('modalStore')(observer(({modalStore}) => {
     return (
         <div>
             <ModalWindow
                 title={coreDescriptions.LEGEND}
                 body={<TableLegend data={legend} />}
-                show={props.isShowLegend}
-                onHide={props.hideLegend}
-                ButtonsBar={<BarClose onHide={props.hideLegend} />}
+                show={modalStore.isShow}
+                onHide={modalStore.close}
+                ButtonsBar={<BarClose onHide={modalStore.close} />}
             />
             <Navbar bg={"light"} expand={"sm"}>
                 <Navbar.Brand href={settingsService.domainUrl}>{settingsService.title}</Navbar.Brand>
                 <Navbar.Toggle aria-controls={"basic-navbar-nav"} />
                 <Navbar.Collapse className={"justify-content-end"} id={"basic-navbar-nav"}>
                     <Nav>
-                        <Nav.Link href={coreRoutes.HASH.url} onClick={props.showLegend}>
+                        <Nav.Link href={coreRoutes.HASH.url} onClick={modalStore.open}>
                             <i className={coreIcons.QUORA} title={coreDescriptions.LEGEND} /> Легенда
                         </Nav.Link>
                         <Nav.Link href={coreRoutes.ROOT.url}>
@@ -44,6 +45,6 @@ const HeaderApp = (props) => {
             </Navbar>
         </div>
     )
-}
+}))
 
 export default HeaderApp

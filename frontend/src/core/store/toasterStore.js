@@ -1,5 +1,3 @@
-import { action, computed, observable } from 'mobx';
-
 class ToasterStore {
     _optionsToaster = {
         autoClose: 8000,
