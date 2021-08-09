@@ -1,0 +1,33 @@
+.select-app {
+  text-align: left !important;
+
+  :focus-within {
+    div[class$="singleValue"] {
+      color: lightgrey !important;
+    }
+  }
+
+  .select-label {
+    text-align: left !important;
+
+    &.left-label {
+      padding: 10px;
+      text-align: left;
+    }
+
+    .select-option {
+      text-align: left;
+    }
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

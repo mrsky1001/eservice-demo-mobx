@@ -1,0 +1,27 @@
+.home-form {
+  .row-body {
+    justify-content: space-around;
+    display: flex;
+
+    .card-form {
+      width: 18rem;
+      height: 400px !important;
+      margin: 1rem;
+
+      .icon-container {
+        width: 100%;
+        text-align: center;
+
+        i {
+          margin: 10% 0 0 0;
+          font-size: 3rem;
+        }
+      }
+
+      .show-button {
+        text-align: center;
+        max-height: 100px;
+      }
+    }
+  }
+}

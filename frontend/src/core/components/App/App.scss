@@ -1,0 +1,72 @@
+
+.app, .modal {
+  font-size: small;
+
+  .card {
+    margin-top: 20px;
+  }
+
+  input, select, button {
+    font-size: small;
+  }
+
+  .btn {
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  .dropdown-menu {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+
+    .dropdown-item {
+      padding: 0;
+
+      a {
+        padding: 5px 50px;
+        text-align: center;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .btn-outline-primary {
+    color: #4995b3;
+    border-color: #4995b3;
+
+    &:hover {
+      color: #fff;
+      border-color: #4995b3;
+      background: #4995b3;
+    }
+  }
+
+  .btn-primary {
+    color: #fff;
+    background-color: #4995b3;
+    border-color: #4995b3;
+
+    //&:hover{
+    //  color: #fff;
+    //  border-color: #EECFBA;
+    //  background: linear-gradient(45deg, #EECFBA, #C5DDE8);
+    //}
+  }
+
+  .page-item.active .page-link {
+    color: #fff;
+    background-color: #4995b3;
+    border-color: #4995b3;
+  }
+
+  a {
+    color: #4995b3;
+  }
+
+  .react-datepicker-wrapper {
+    display: block !important;
+  }
+
+}
