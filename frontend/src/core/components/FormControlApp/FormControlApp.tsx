@@ -14,7 +14,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     }
 
     return (
-        <div>
+        <div className={initState.classes}>
             {initState.label === undefined ? null : (
                 <Form.Label className={initState.classesLabel}>{initState.label}</Form.Label>
             )}
@@ -26,8 +26,9 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                 placeholder={initState.placeholder}
                 onChange={(res) => setValue(res.target.value)}
                 onBlur={() => onBlur()}
-                classes={initState.classes}
+                classes={initState.classesInput}
                 value={currentValue}
+                disabled={props.isDisabled}
             />
         </div>
     )

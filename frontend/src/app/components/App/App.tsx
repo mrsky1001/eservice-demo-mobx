@@ -1,4 +1,5 @@
 import '../../../core/components/imports'
+import './App.scss'
 import * as React from 'react'
 import HeaderApp from '../../../core/components/HeaderApp/HeaderApp'
 import Router from '../Router/Router'

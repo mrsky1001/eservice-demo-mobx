@@ -1,12 +1,13 @@
 import { makeAutoObservable } from 'mobx'
+import Group from '../../models/group'
 
 interface ISimpleFormStore {
-    selectedGroup:
+    selectedGroup: Group
     info: string
 }
 
 class SimpleFormStore implements ISimpleFormStore {
-    userName = ''
+    selectedGroup: Group
     info = ''
 
     constructor() {

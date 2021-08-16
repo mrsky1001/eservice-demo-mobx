@@ -11,6 +11,7 @@ export interface IFormControlAppProps {
     placeholder?: string
     classes?: string
     classesLabel?: string
+    classesInput?: string
     isDisabled?: boolean
     onChange: (val: string | number | string[]) => void
 }
@@ -21,5 +22,7 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
         type: 'text',
     }
 
-    return Object.assign(emptyState, props)
+    return Object.assign(emptyState, props, {
+        classes: 'form-control-app ' + props.classes,
+    })
 }

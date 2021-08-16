@@ -15,7 +15,7 @@ const HeaderApp = observer(() => {
 
     return (
         <div className={'header-app'}>
-            <Navbar expand={'sm'} className={'p-2'}>
+            <Navbar expand={'sm'}>
                 <Navbar.Brand className={'title'} href={coreUrls.DOMAIN}>
                     {headerStore.title}
                 </Navbar.Brand>
