@@ -11,6 +11,11 @@ import { Col, Row } from 'react-bootstrap'
 import ColApp from '../../../../core/components/ColApp/ColApp'
 
 export default observer(() => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        formStore.handlerSubmit()
+        e.preventDefault()
+    }
+
     return (
         <Row>
             <Col lg={3} md={0} />
@@ -21,28 +26,24 @@ export default observer(() => {
                     <Card className={'simple-form justify-content-center'}>
                         <Card.Header>Проста форма</Card.Header>
                         <Card.Body>
-                            <Form>
+                            <Form onSubmit={handleSubmit}>
                                 <Form.Label>Введите "Имя пользователя" и посмотрите результат!</Form.Label>
                                 <FormControlApp
                                     label={'Имя пользователь'}
-                                    onChange={formStore.changeUserName}
                                     value={formStore.userName}
+                                    onChange={(val) => formStore.changeUserName(String(val))}
                                 />
                                 <FormControlApp
                                     as={'textarea'}
                                     label={'Вывод'}
-                                    onChange={formStore.changeInfo}
                                     value={formStore.info}
                                     isDisabled={true}
+                                    onChange={(val) => formStore.changeInfo(String(val))}
                                 />
                             </Form>
                         </Card.Body>
                         <Card.Footer>
-                            <Button
-                                onClick={formStore.handlerSubmit}
-                                className={'pull-right button'}
-                                variant={'primary'}
-                            >
+                            <Button type={'submit'} className={'pull-right button'} variant={'primary'}>
                                 <i className={'fa fa-arrow'} />
                                 Результат
                             </Button>

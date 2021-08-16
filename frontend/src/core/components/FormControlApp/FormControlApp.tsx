@@ -5,13 +5,6 @@ import { IFormControlAppProps, init } from './extensions/form-control-app'
 
 const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const initState = init(props)
-    const [currentValue, setValue] = useState(initState.value)
-
-    const onBlur = () => {
-        if (currentValue !== initState.value) {
-            initState.onChange(currentValue)
-        }
-    }
 
     return (
         <div className={initState.classes}>
@@ -24,10 +17,10 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                 type={initState.type}
                 required={initState.required}
                 placeholder={initState.placeholder}
-                onChange={(res) => setValue(res.target.value)}
-                onBlur={() => onBlur()}
+                onChange={(res) => initState.onChange(res.target.value)}
+                onBlur={(val) => initState.onChange(val.currentTarget.value)}
                 classes={initState.classesInput}
-                value={currentValue}
+                value={initState.value}
                 disabled={props.isDisabled}
             />
         </div>

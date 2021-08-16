@@ -22,7 +22,7 @@ class SimpleFormStore implements ISimpleFormStore {
     }
 
     handlerSubmit() {
-        this.info = this.userName
+        this.changeInfo(this.userName)
     }
 }
 
