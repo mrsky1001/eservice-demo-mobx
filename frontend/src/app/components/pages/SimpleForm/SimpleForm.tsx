@@ -11,9 +11,10 @@ import { Col, Row } from 'react-bootstrap'
 import ColApp from '../../../../core/components/ColApp/ColApp'
 
 export default observer(() => {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): React.MouseEvent<HTMLElement> => {
         formStore.handlerSubmit()
         e.preventDefault()
+        return e
     }
 
     return (
@@ -45,7 +46,7 @@ export default observer(() => {
                         <Card.Footer>
                             <Button onClick={handleSubmit} className={'pull-right button'} variant={'primary'}>
                                 <i className={'fa fa-arrow'} />
-                                Результат
+                                Вывести
                             </Button>
                         </Card.Footer>
                     </Card>
