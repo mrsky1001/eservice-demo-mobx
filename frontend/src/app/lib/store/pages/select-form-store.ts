@@ -3,27 +3,23 @@ import Group from '../../models/group'
 
 interface ISimpleFormStore {
     selectedGroup: Group
-    info: string
+    groups: Group[]
 }
 
 class SimpleFormStore implements ISimpleFormStore {
-    selectedGroup: Group
-    info = ''
+    selectedGroup: Group = null
+    groups: Group[] = []
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    changeUserName(val: string) {
-        this.userName = val
+    changeGroups(val: Group[]) {
+        this.groups = val
     }
 
-    changeInfo(val: string) {
-        this.info = val
-    }
-
-    handlerSubmit() {
-        this.info = this.userName
+    selectGroup(val: Group) {
+        this.selectedGroup = val
     }
 }
 

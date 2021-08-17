@@ -1,10 +1,11 @@
 import './SelectForm.scss'
 
-import React, { useEffect, useReducer, useState } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import { observer } from 'mobx-react-lite'
 import FormSelectApp from '../../../../core/components/FormSelectApp/FormSelectApp'
+import formStore from '../../../lib/store/pages/select-form-store'
 
 export default observer(() => {
     return (
@@ -12,7 +13,11 @@ export default observer(() => {
             <Card.Header>Форма с выпадающим полем</Card.Header>
             <Card.Body>
                 <Form>
-                    <FormSelectApp value={selectedGroup} options={groupFactory.options()} onChange={setSelectedGroup} />
+                    <FormSelectApp
+                        value={formStore.selectedGroup}
+                        options={formStore.groups}
+                        onChange={formStore.selectGroup}
+                    />
                 </Form>
             </Card.Body>
         </Card>
