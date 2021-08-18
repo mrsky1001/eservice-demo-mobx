@@ -7,6 +7,16 @@ export const joinUrl = (...urls: string[]): string => {
 
     return res
 }
+
+// export const toSelectOptions = (list, fieldName, label = fieldName, icon) => {
+//     const listLabels = Array.isArray(label) ? label : [label]
+//
+//     let resText = ""
+//     if (this[name] !== undefined) listLabels.forEach(_ => (resText += splitter + this[_]))
+//
+//     return new OptionSelect({ id: this.id, label: resText, value: this[name], icon: icon })
+//
+// }
 // export const makeId  = <T, P>(list: IGlobalStore<T, P>[] | IGlobalStore<T, P>, template: string = "", withReplace = false): void => {
 //     function make() {
 //         let text = template

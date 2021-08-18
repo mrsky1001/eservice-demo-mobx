@@ -1,4 +1,4 @@
-import { ElementType } from 'react'
+import { CSSProperties, ElementType } from 'react'
 
 export interface IFormControlAppProps {
     required?: boolean
@@ -8,18 +8,23 @@ export interface IFormControlAppProps {
     type?: string
     as?: ElementType
     label?: string
+    rows?: number
     placeholder?: string
     classes?: string
     classesLabel?: string
     classesInput?: string
+    style?: CSSProperties
     isDisabled?: boolean
-    onChange: (val: string | number | string[]) => void
+    onChange?: (val: string | number | string[]) => void
 }
 
 export const init = (props: IFormControlAppProps): IFormControlAppProps => {
     const emptyState = {
         as: 'input',
         type: 'text',
+        onChange: () => {
+            return ''
+        },
     }
 
     return Object.assign(emptyState, props, {

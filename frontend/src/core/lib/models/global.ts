@@ -1,35 +1,14 @@
-import { nanoid } from 'nanoid'
+import { OptionSelect } from './option-select'
+import { IInit, Init } from './init'
 
-export interface IGlobal {
-    id?: string
-}
+export type IGlobal = IInit
 
-export class Global implements IGlobal {
-    id?: string
-
-    private _init? = (obj): any => {
-        const excludedList = ['id']
-
-        Object.keys(obj).map((key) => {
-            if (excludedList.indexOf(key) < 0)
-                if (typeof this[key] !== 'function' && typeof this[key] !== 'object') {
-                    this[key] = obj[key]
-                } else if (typeof this[key] === 'object' && typeof this[key].resetInit === 'function') {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                    this[key].resetInit(obj[key])
-                }
-        })
-
-        return this
-    }
-
+export class Global<I, T> extends Init<I, T> implements IGlobal {
     constructor(obj: IGlobal) {
-        this.id = obj && obj.id ? obj.id : nanoid()
-        obj && this._init(obj)
+        super(obj)
     }
 
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    resetInit?(obj: any): any {
-        return this._init(obj)
+    toSelectOption(nameFiled: string, labelField = nameFiled, icon = ''): OptionSelect {
+        return new OptionSelect({ label: this[labelField], value: this[nameFiled], icon: icon })
     }
 }

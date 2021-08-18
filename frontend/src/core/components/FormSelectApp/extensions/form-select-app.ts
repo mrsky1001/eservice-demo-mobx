@@ -1,13 +1,9 @@
-interface IOption {
-    label: string
-    value: string
-    icon: string
-}
+import { IOptionSelect } from '../../../lib/models/option-select'
 
 export interface IFormSelectAppProps {
     id?: string
-    value: string
-    options: IOption[]
+    value: IOptionSelect
+    options: IOptionSelect[]
     label?: string
     placeholder?: string
     classes?: string
@@ -19,7 +15,7 @@ export interface IFormSelectAppProps {
     isLeftLabel?: boolean
     isDisabled?: boolean
     required?: boolean
-    onChange: (val: string | number | string[]) => void
+    onChange: (val: IOptionSelect) => void
 }
 
 export const init = (props: IFormSelectAppProps): IFormSelectAppProps => {

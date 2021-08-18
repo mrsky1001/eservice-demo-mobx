@@ -1,5 +1,5 @@
 import './FormControlApp.scss'
-import React, { useState } from 'react'
+import React from 'react'
 import { Form } from 'react-bootstrap'
 import { IFormControlAppProps, init } from './extensions/form-control-app'
 
@@ -15,6 +15,8 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                 id={initState.id}
                 as={initState.as}
                 type={initState.type}
+                style={initState.style}
+                rows={initState.rows}
                 required={initState.required}
                 placeholder={initState.placeholder}
                 onChange={(res) => initState.onChange(res.target.value)}
