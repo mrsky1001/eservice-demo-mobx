@@ -1,101 +1,122 @@
-import "./ValidationForm.scss"
+import './ValidationForm.scss'
 
-import React, {useState} from "react"
-import Form from "react-bootstrap/Form"
-import ButtonNav from "../../../../core/components/generic/ButtonNav/ButtonNav"
-import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
-import FormControlCustom from "../../../../core/components/form/FormControl/FormControlCustom"
-import icons from "../../../lib/common/icons";
+import React, { useState } from 'react'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import { observer } from 'mobx-react-lite'
+import FormControlApp from '../../../../core/components/FormControlApp/FormControlApp'
+import { Col, NavLink, Row } from 'react-bootstrap'
+import ColApp from '../../../../core/components/ColApp/ColApp'
 
-const ValidationForm = () => {
+export default observer(() => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const [age, setAge] = useState('')
     const [email, setEmail] = useState('')
     const [date, setDate] = useState('')
     const [result, setResult] = useState('')
-    const [validated, setValidated] = useState(false);
+    const [validated, setValidated] = useState(false)
 
     const handleSubmit = (event) => {
-        const form = event.currentTarget;
+        const form = event.currentTarget
 
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+            event.preventDefault()
+            event.stopPropagation()
         }
 
-        setValidated(true);
-        setResult(JSON.stringify({
-            login: login,
-            password: password,
-            age: age,
-            email: email,
-            date: date,
-        }))
-    };
+        setValidated(true)
+        setResult(
+            JSON.stringify({
+                login: login,
+                password: password,
+                age: age,
+                email: email,
+                date: date,
+            }),
+        )
+    }
 
     return (
-        <Card className={"validation-form justify-content-center"}>
-            <Card.Header>Форма с валидацией полей</Card.Header>
-            <Card.Body>
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                    <FormControlCustom
-                        label={"Логин"}
-                        value={login}
-                        onChange={setLogin}
-                        isRequired={true}
-                        pattern={'^[A-z]+$'}
-                        patternError={'Только латинские буквы'}
-                    />
-                    <FormControlCustom
-                        type={"password"}
-                        label={"Пароль"}
-                        value={password}
-                        onChange={setPassword}
-                        isRequired={true}
-                    />
-                    <FormControlCustom
-                        type={"number"}
-                        label={"Возраст"}
-                        value={age}
-                        onChange={setAge}
-                        isRequired={true}
-                        minValue={18}
-                        maxValue={30}
-                    />
-                    <FormControlCustom
-                        type={"email"}
-                        label={"E-mail"}
-                        value={email}
-                        onChange={setEmail}
-                        isRequired={true}
-                    />
-                    <FormControlCustom
-                        type={"date"}
-                        label={"Дата"}
-                        value={date}
-                        onChange={setDate}
-                        isRequired={true}
-                    />
-                    <FormControlCustom
-                        as={"textarea"}
-                        label={"Вывод"}
-                        value={result}
-                        countRows={10}
-                        isDisabled={true}
-                    />
-                    <ButtonNav
-                        componentButtons={() =>
-                            <Button type={"submit"} className={"button"} variant={"primary"}>
-                                <i className={icons.ARROW}/>
-                                Результат
-                            </Button>
-                        }
-                    />
-                </Form>
-            </Card.Body>
-        </Card>
+        <Row>
+            <Col lg={3} md={0} />
+            <ColApp
+                lg={5}
+                md={12}
+                body={
+                    <>
+                        <Row>
+                            <Col>
+                                <NavLink href={prevPage.route}>{`<< ${prevPage.title}`}</NavLink>
+                            </Col>
+                            <Col>
+                                <NavLink href={nextPage.route} className={'pull-right'}>
+                                    {`${nextPage.title} >>`}
+                                </NavLink>
+                            </Col>
+                        </Row>
+                        <Card className={'validation-form justify-content-center'}>
+                            <Card.Header>Форма с валидацией полей</Card.Header>
+                            <Card.Body>
+                                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                    <FormControlApp
+                                        label={'Логин'}
+                                        value={login}
+                                        onChange={setLogin}
+                                        isRequired={true}
+                                        pattern={'^[A-z]+$'}
+                                        patternError={'Только латинские буквы'}
+                                    />
+                                    <FormControlApp
+                                        type={'password'}
+                                        label={'Пароль'}
+                                        value={password}
+                                        onChange={setPassword}
+                                        isRequired={true}
+                                    />
+                                    <FormControlApp
+                                        type={'number'}
+                                        label={'Возраст'}
+                                        value={age}
+                                        onChange={setAge}
+                                        isRequired={true}
+                                        minValue={18}
+                                        maxValue={30}
+                                    />
+                                    <FormControlApp
+                                        type={'email'}
+                                        label={'E-mail'}
+                                        value={email}
+                                        onChange={setEmail}
+                                        isRequired={true}
+                                    />
+                                    <FormControlApp
+                                        type={'date'}
+                                        label={'Дата'}
+                                        value={date}
+                                        onChange={setDate}
+                                        isRequired={true}
+                                    />
+                                    <FormControlApp
+                                        as={'textarea'}
+                                        label={'Вывод'}
+                                        value={result}
+                                        countRows={10}
+                                        isDisabled={true}
+                                    />
+                                </Form>
+                            </Card.Body>
+                            <Card.Footer>
+                                <Button type={'submit'} className={'button'} variant={'primary'}>
+                                    <i className={icons.ARROW} />
+                                    Результат
+                                </Button>
+                            </Card.Footer>
+                        </Card>
+                    </>
+                }
+            />
+        </Row>
     )
-}
-export default ValidationForm
+})
