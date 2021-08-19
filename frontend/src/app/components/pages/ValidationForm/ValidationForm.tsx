@@ -78,6 +78,8 @@ export default observer(() => {
                                         value={formStore.password}
                                         onChange={formStore.setPassword.bind(formStore)}
                                         required={true}
+                                        minLength={8}
+                                        maxLength={20}
                                     />
                                     <FormControlApp
                                         type={'number'}
