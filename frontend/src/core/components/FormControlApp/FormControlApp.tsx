@@ -47,7 +47,6 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                 value={initState.value}
                 disabled={props.disabled}
                 isInvalid={isInvalid}
-                validity={isInvalid === undefined ? isInvalid : !isInvalid}
                 isValid={isInvalid === undefined ? isInvalid : !isInvalid}
             />
             <div className={'form-errors'}>

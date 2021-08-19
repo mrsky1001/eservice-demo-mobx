@@ -20,7 +20,6 @@ export default observer(() => {
     const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
         const form = e.currentTarget
 
-        console.log(form.checkValidity())
         if (!form.checkValidity()) {
             e.preventDefault()
             e.stopPropagation()
