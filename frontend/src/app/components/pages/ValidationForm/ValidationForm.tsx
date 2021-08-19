@@ -20,21 +20,27 @@ export default observer(() => {
     const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
         const form = e.currentTarget
 
+        console.log(form.checkValidity())
         if (!form.checkValidity()) {
             e.preventDefault()
             e.stopPropagation()
-        }
+        } else {
+            formStore.setValidated(true)
 
-        formStore.setValidated(true)
-        formStore.setResult(
-            JSON.stringify({
-                login: formStore.login,
-                password: formStore.password,
-                age: formStore.age,
-                email: formStore.email,
-                date: formStore.date,
-            }),
-        )
+            formStore.setResult(
+                JSON.stringify(
+                    {
+                        login: formStore.login,
+                        password: formStore.password,
+                        age: formStore.age,
+                        email: formStore.email,
+                        date: formStore.date,
+                    },
+                    null,
+                    ' ',
+                ),
+            )
+        }
     }
 
     return (
@@ -107,7 +113,7 @@ export default observer(() => {
                                 </Form>
                             </Card.Body>
                             <Card.Footer>
-                                <Button type={'submit'} className={'button'} variant={'primary'}>
+                                <Button onClick={handleSubmit} className={'button'} variant={'primary'}>
                                     <i className={'fa fa-arrow'} />
                                     Отправить
                                 </Button>

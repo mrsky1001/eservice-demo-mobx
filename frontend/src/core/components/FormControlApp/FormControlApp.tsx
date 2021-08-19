@@ -10,8 +10,10 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const [isInvalid, setIsInvalid] = useState(undefined)
 
     const onBlur = (val) => {
+        const value = val.currentTarget.value
+
         const errors = validateForm({
-            value: initState.value,
+            value: value,
             type: initState.type,
             minLength: initState.minLength,
             maxLength: initState.maxLength,
@@ -23,7 +25,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
 
         setValidErrors(errors)
         setIsInvalid(errors.length > 0)
-        initState.onChange(val.currentTarget.value)
+        initState.onChange(value)
     }
 
     return (
@@ -39,12 +41,13 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                 rows={initState.rows}
                 required={initState.required}
                 placeholder={initState.placeholder}
-                onChange={(res) => initState.onChange(res.target.value)}
-                onBlur={(val) => onBlur(val)}
+                onChange={onBlur}
+                onBlur={onBlur}
                 classes={initState.classesInput}
                 value={initState.value}
                 disabled={props.disabled}
                 isInvalid={isInvalid}
+                validity={isInvalid === undefined ? isInvalid : !isInvalid}
                 isValid={isInvalid === undefined ? isInvalid : !isInvalid}
             />
             <div className={'form-errors'}>

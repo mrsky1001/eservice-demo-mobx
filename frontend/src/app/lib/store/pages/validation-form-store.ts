@@ -34,15 +34,19 @@ class ValidationFormStore implements IValidationFormStore {
     setAge(val: number) {
         this.age = val
     }
+
     setEmail(val: string) {
         this.email = val
     }
+
     setDate(val: string) {
         this.date = val
     }
+
     setResult(val: string) {
         this.result = val
     }
+
     setValidated(val: boolean) {
         this.validated = val
     }

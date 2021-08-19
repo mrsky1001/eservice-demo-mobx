@@ -10,7 +10,7 @@ interface IValidationFormProps {
 }
 export default (props: IValidationFormProps): string[] => {
     const errors: string[] = []
-
+    const controlTypes: string[] = ['text', 'number', 'password']
     const templatesErrors = {
         requiredError: 'Обязательное поле!',
         minLengthError: `Поле должно содержать минимум ${props.minLength} симв!`,
@@ -21,7 +21,7 @@ export default (props: IValidationFormProps): string[] => {
 
     String(props.value).length === 0 && errors.push(templatesErrors.requiredError)
 
-    if ('text number password'.includes(props.type)) {
+    if (controlTypes.find((t) => t === props.type)) {
         props.minLength && String(props.value).length < props.minLength && errors.push(templatesErrors.minLengthError)
         props.maxLength && String(props.value).length > props.maxLength && errors.push(templatesErrors.maxLengthError)
         props.minValue && props.value < props.minValue && errors.push(templatesErrors.minValueError)

@@ -1,4 +1,5 @@
 import { CSSProperties, ElementType } from 'react'
+import validateForm from './validation-control-app'
 
 export interface IFormControlAppProps {
     value: string | number
@@ -21,12 +22,27 @@ export interface IFormControlAppProps {
     disabled?: boolean
     required?: boolean
     onChange?: (val: string | number) => void
+    isValid?: boolean
+    validErrors?: string[]
 }
 
 export const init = (props: IFormControlAppProps): IFormControlAppProps => {
+    // const errors = validateForm({
+    //     value: props.value,
+    //     type: props.type,
+    //     minLength: props.minLength,
+    //     maxLength: props.maxLength,
+    //     minValue: props.minValue,
+    //     maxValue: props.maxValue,
+    //     pattern: props.pattern,
+    //     patternError: props.patternError,
+    // })
+
     const emptyState = {
         as: 'input',
         type: 'text',
+        // validErrors: errors,
+        // isValid: errors.length > 0,
         onChange: () => {
             return ''
         },
