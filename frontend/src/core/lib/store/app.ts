@@ -7,7 +7,7 @@ class AppStore {
         makeAutoObservable(this)
     }
 
-    changeLoading(val: boolean) {
+    setLoading(val: boolean) {
         this.loading = val
     }
 }

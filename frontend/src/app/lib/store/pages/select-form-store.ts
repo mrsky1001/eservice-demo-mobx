@@ -17,11 +17,11 @@ class SelectFormStore implements ISelectFormStore {
         makeAutoObservable(this)
     }
 
-    changeLoading(val: boolean) {
+    setLoading(val: boolean) {
         this.loading = val
     }
 
-    changeGroups(val: Group[]) {
+    setGroups(val: Group[]) {
         this.groups = val
     }
 
@@ -30,9 +30,9 @@ class SelectFormStore implements ISelectFormStore {
     }
 
     init(rawGroups: IGroup[]) {
-        this.changeGroups(rawGroups.map((g) => new Group(g)))
+        this.setGroups(rawGroups.map((g) => new Group(g)))
         this.selectedGroup = this.groups[0]
-        this.changeLoading(false)
+        this.setLoading(false)
     }
 }
 

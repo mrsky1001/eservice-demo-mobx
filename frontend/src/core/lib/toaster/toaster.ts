@@ -6,7 +6,7 @@ import './toaster.scss'
 /**
  * Toaster
  * Pool up messenger of app.
- * Dont change this file!!!
+ * Dont set this file!!!
  */
 const fade = cssTransition({
     enter: 'animate__fadeInDown',

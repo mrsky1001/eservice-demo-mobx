@@ -7,7 +7,7 @@ import ColumnsFactory from "../../../../core/lib/templates/columnsFactory/column
 /**
  * ColumnsFactory
  * This is the list of table columns.
- * You need add/change columns.
+ * You need add/set columns.
  */
 
 class Columns extends ColumnsFactory {

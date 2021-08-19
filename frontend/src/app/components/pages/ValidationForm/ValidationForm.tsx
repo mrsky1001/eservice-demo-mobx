@@ -8,26 +8,19 @@ import { observer } from 'mobx-react-lite'
 import FormControlApp from '../../../../core/components/FormControlApp/FormControlApp'
 import { Col, NavLink, Row } from 'react-bootstrap'
 import ColApp from '../../../../core/components/ColApp/ColApp'
+import formStore from '../../../lib/store/pages/validation-form-store'
 
 export default observer(() => {
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState('')
-    const [age, setAge] = useState('')
-    const [email, setEmail] = useState('')
-    const [date, setDate] = useState('')
-    const [result, setResult] = useState('')
-    const [validated, setValidated] = useState(false)
+    const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
+        const form = e.currentTarget
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget
-
-        if (form.checkValidity() === false) {
-            event.preventDefault()
-            event.stopPropagation()
+        if (!form.checkValidity()) {
+            e.preventDefault()
+            e.stopPropagation()
         }
 
-        setValidated(true)
-        setResult(
+        formStore.setValidated(true)
+        formStore.setResult(
             JSON.stringify({
                 login: login,
                 password: password,

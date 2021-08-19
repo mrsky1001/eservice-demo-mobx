@@ -20,7 +20,7 @@ class HeaderAppStore {
         })
     }
 
-    changeLegend(val: string[]) {
+    setLegend(val: string[]) {
         this.legend = val
     }
 

@@ -50,14 +50,14 @@ export default observer(() => {
                                     <FormControlApp
                                         label={'Имя пользователь'}
                                         value={formStore.userName}
-                                        onChange={formStore.changeUserName.bind(formStore)}
+                                        onChange={formStore.setUserName.bind(formStore)}
                                     />
                                     <FormControlApp
                                         as={'textarea'}
                                         label={'Вывод'}
                                         value={formStore.info}
                                         isDisabled={true}
-                                        onChange={formStore.changeInfo.bind(formStore)}
+                                        onChange={formStore.setInfo.bind(formStore)}
                                     />
                                 </Form>
                             </Card.Body>

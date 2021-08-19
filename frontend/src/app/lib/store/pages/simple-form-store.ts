@@ -13,16 +13,16 @@ class SimpleFormStore implements ISimpleFormStore {
         makeAutoObservable(this)
     }
 
-    changeUserName(val: string) {
+    setUserName(val: string) {
         this.userName = val
     }
 
-    changeInfo(val: string) {
+    setInfo(val: string) {
         this.info = val
     }
 
     handlerSubmit() {
-        this.changeInfo(this.userName)
+        this.setInfo(this.userName)
     }
 }
 

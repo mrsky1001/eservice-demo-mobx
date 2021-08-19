@@ -16,12 +16,6 @@ export default class Group extends Global<IGroup, Group> implements IGroup {
     }
 
     getStudentsText(): string {
-        let text = ''
-
-        this.students.map((s) => {
-            text += `login: ${s.login} \n` + `email: ${s.email}\n` + `age: ${s.age}\n` + `date: ${s.date}\n\n`
-        })
-
-        return text
+        return this.students.map((s) => JSON.stringify(s, null, ' ')).join(' \n')
     }
 }
