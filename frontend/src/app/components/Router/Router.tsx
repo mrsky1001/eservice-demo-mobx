@@ -6,6 +6,7 @@ import routes from '../../lib/routes'
 import Home from '../Home/Home'
 import SimpleForm from '../pages/SimpleForm/SimpleForm'
 import SelectForm from '../pages/SelectForm/SelectForm'
+import ValidationForm from '../pages/ValidationForm/ValidationForm'
 
 const Router = observer(() => {
     return (
@@ -13,6 +14,7 @@ const Router = observer(() => {
             <Switch>
                 <Route exact path={routes.HOME} component={Home} />
                 <Route exact path={routes.SIMPLE_FORM} component={SimpleForm} />
+                <Route exact path={routes.VALID_FORM} component={ValidationForm} />
                 <Route exact path={routes.SELECT_FORM} component={SelectForm} />
                 <Redirect from="*" to={routes.HOME} />
             </Switch>

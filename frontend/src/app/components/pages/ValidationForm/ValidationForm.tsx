@@ -9,8 +9,14 @@ import FormControlApp from '../../../../core/components/FormControlApp/FormContr
 import { Col, NavLink, Row } from 'react-bootstrap'
 import ColApp from '../../../../core/components/ColApp/ColApp'
 import formStore from '../../../lib/store/pages/validation-form-store'
+import pagesStore from '../../../lib/store/pages-store'
 
 export default observer(() => {
+    const currentPageRowNum = 0
+    const currentPageColNum = 1
+    const prevPage = pagesStore.examplesRows[currentPageRowNum].columns[currentPageColNum - 1]
+    const nextPage = pagesStore.examplesRows[currentPageRowNum].columns[currentPageColNum + 1]
+
     const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
         const form = e.currentTarget
 
@@ -22,11 +28,11 @@ export default observer(() => {
         formStore.setValidated(true)
         formStore.setResult(
             JSON.stringify({
-                login: login,
-                password: password,
-                age: age,
-                email: email,
-                date: date,
+                login: formStore.login,
+                password: formStore.password,
+                age: formStore.age,
+                email: formStore.email,
+                date: formStore.date,
             }),
         )
     }
@@ -52,58 +58,58 @@ export default observer(() => {
                         <Card className={'validation-form justify-content-center'}>
                             <Card.Header>Форма с валидацией полей</Card.Header>
                             <Card.Body>
-                                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                                <Form noValidate validated={formStore.validated} onSubmit={handleSubmit}>
                                     <FormControlApp
                                         label={'Логин'}
-                                        value={login}
-                                        onChange={setLogin}
-                                        isRequired={true}
+                                        value={formStore.login}
+                                        onChange={formStore.setLogin.bind(formStore)}
+                                        required={true}
                                         pattern={'^[A-z]+$'}
                                         patternError={'Только латинские буквы'}
                                     />
                                     <FormControlApp
                                         type={'password'}
                                         label={'Пароль'}
-                                        value={password}
-                                        onChange={setPassword}
-                                        isRequired={true}
+                                        value={formStore.password}
+                                        onChange={formStore.setPassword.bind(formStore)}
+                                        required={true}
                                     />
                                     <FormControlApp
                                         type={'number'}
                                         label={'Возраст'}
-                                        value={age}
-                                        onChange={setAge}
-                                        isRequired={true}
+                                        value={formStore.age}
+                                        onChange={formStore.setAge.bind(formStore)}
+                                        required={true}
                                         minValue={18}
                                         maxValue={30}
                                     />
                                     <FormControlApp
                                         type={'email'}
                                         label={'E-mail'}
-                                        value={email}
-                                        onChange={setEmail}
-                                        isRequired={true}
+                                        value={formStore.email}
+                                        onChange={formStore.setEmail.bind(formStore)}
+                                        required={true}
                                     />
                                     <FormControlApp
                                         type={'date'}
                                         label={'Дата'}
-                                        value={date}
-                                        onChange={setDate}
-                                        isRequired={true}
+                                        value={formStore.date}
+                                        onChange={formStore.setDate.bind(formStore)}
+                                        required={true}
                                     />
                                     <FormControlApp
                                         as={'textarea'}
                                         label={'Вывод'}
-                                        value={result}
-                                        countRows={10}
-                                        isDisabled={true}
+                                        value={formStore.result}
+                                        rows={10}
+                                        disabled={true}
                                     />
                                 </Form>
                             </Card.Body>
                             <Card.Footer>
                                 <Button type={'submit'} className={'button'} variant={'primary'}>
-                                    <i className={icons.ARROW} />
-                                    Результат
+                                    <i className={'fa fa-arrow'} />
+                                    Отправить
                                 </Button>
                             </Card.Footer>
                         </Card>

@@ -13,7 +13,7 @@ export interface IFormSelectAppProps {
     defaultOptions?: string
     isCanEmpty?: boolean
     isLeftLabel?: boolean
-    isDisabled?: boolean
+    disabled?: boolean
     required?: boolean
     onChange: (val: IOptionSelect) => void
 }
@@ -41,7 +41,7 @@ export const init = (props: IFormSelectAppProps): IFormSelectAppProps => {
         defaultOptions: true,
         isCanEmpty: true,
         isLeftLabel: false,
-        isDisabled: false,
+        disabled: false,
         required: false,
     }
 

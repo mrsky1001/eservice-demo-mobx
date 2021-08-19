@@ -1,12 +1,16 @@
 import { CSSProperties, ElementType } from 'react'
 
 export interface IFormControlAppProps {
-    required?: boolean
-
-    value: string | number | string[]
+    value: string | number
     id?: string
     type?: string
+    maxLength?: number
+    minLength?: number
+    maxValue?: number
+    minValue?: number
     as?: ElementType
+    pattern?: string
+    patternError?: string
     label?: string
     rows?: number
     placeholder?: string
@@ -14,8 +18,9 @@ export interface IFormControlAppProps {
     classesLabel?: string
     classesInput?: string
     style?: CSSProperties
-    isDisabled?: boolean
-    onChange?: (val: string | number | string[]) => void
+    disabled?: boolean
+    required?: boolean
+    onChange?: (val: string | number) => void
 }
 
 export const init = (props: IFormControlAppProps): IFormControlAppProps => {

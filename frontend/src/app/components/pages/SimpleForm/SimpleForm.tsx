@@ -56,7 +56,7 @@ export default observer(() => {
                                         as={'textarea'}
                                         label={'Вывод'}
                                         value={formStore.info}
-                                        isDisabled={true}
+                                        disabled={true}
                                         onChange={formStore.setInfo.bind(formStore)}
                                     />
                                 </Form>

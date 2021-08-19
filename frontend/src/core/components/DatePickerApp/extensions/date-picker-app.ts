@@ -21,7 +21,7 @@ export interface IDatePickerProps {
     dateOutFormat?: (val: string) => string
 
     required?: boolean
-    isDisabled?: boolean
+    disabled?: boolean
     isLeftLabel?: boolean
     formatWeekDay?: boolean
     useWeekdaysShort?: boolean
@@ -62,7 +62,7 @@ export const init = (props: IDatePickerProps): IDatePickerProps => {
 
         required: false,
         isLeftLabel: false,
-        isDisabled: false,
+        disabled: false,
     }
 
     return Object.assign(emptyState, props, {

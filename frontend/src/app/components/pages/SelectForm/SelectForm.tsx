@@ -59,7 +59,7 @@ export default observer(() => {
                                             as={'textarea'}
                                             label={'Вывод'}
                                             value={formStore.selectedGroup.getStudentsText()}
-                                            isDisabled={true}
+                                            disabled={true}
                                             rows={10}
                                         />
                                     </Form>

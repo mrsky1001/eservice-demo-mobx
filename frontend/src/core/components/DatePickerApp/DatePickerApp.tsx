@@ -20,7 +20,7 @@ const DatePickerApp = (props: IDatePickerProps): JSX.Element => {
                         required={initState.required}
                         type={initState.type}
                         locale={initState.locale}
-                        disabled={initState.isDisabled}
+                        disabled={initState.disabled}
                         placeholderText={initState.placeholderText}
                         selected={initState.dateInFormat(initState.selected)}
                         onChange={initState.onChange}

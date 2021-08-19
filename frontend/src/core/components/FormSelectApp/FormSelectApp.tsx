@@ -66,7 +66,7 @@ const FormSelectApp = (props: IFormSelectAppProps): JSX.Element => {
                     isClearable={initState.isCanEmpty}
                     onChange={handlerChange}
                     className={initState.classesSelect}
-                    isDisabled={initState.isDisabled}
+                    disabled={initState.disabled}
                     components={{ Option: IconOption, NoOptionsMessage: NoOptionsMessage }}
                     styles={{ noOptionsMessage: (base) => ({ ...base }) }}
                     value={initState.isCanEmpty && !isSelected ? undefined : initState.value}
