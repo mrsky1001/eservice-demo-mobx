@@ -1,4 +1,5 @@
 import { formatDateToPicker, toDateBackend, toDatePicker } from '../../../lib/date'
+import { CSSProperties } from 'react'
 
 export interface IDatePickerProps {
     id?: string
@@ -12,6 +13,7 @@ export interface IDatePickerProps {
     dateFormat?: string
     classesGroup?: string
     classesLabel?: string
+    style?: CSSProperties
     placeholderText?: string
     classesDatepicker?: string
     classesDivDatepicker?: string
@@ -23,6 +25,7 @@ export interface IDatePickerProps {
     required?: boolean
     disabled?: boolean
     isLeftLabel?: boolean
+    isInvalid?: boolean
     formatWeekDay?: boolean
     useWeekdaysShort?: boolean
 }

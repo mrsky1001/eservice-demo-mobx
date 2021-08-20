@@ -1,6 +1,6 @@
 import './ValidationForm.scss'
 
-import React, { useState } from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
@@ -10,6 +10,8 @@ import { Col, NavLink, Row } from 'react-bootstrap'
 import ColApp from '../../../../core/components/ColApp/ColApp'
 import formStore from '../../../lib/store/pages/validation-form-store'
 import pagesStore from '../../../lib/store/pages-store'
+import DatePickerApp from '../../../../core/components/DatePickerApp/DatePickerApp'
+import { toDatePicker } from '../../../../core/lib/date'
 
 export default observer(() => {
     const currentPageRowNum = 0
@@ -86,7 +88,6 @@ export default observer(() => {
                                         label={'Возраст'}
                                         value={formStore.age}
                                         onChange={formStore.setAge.bind(formStore)}
-                                        required={true}
                                         minValue={18}
                                         maxValue={30}
                                     />
@@ -100,9 +101,10 @@ export default observer(() => {
                                     <FormControlApp
                                         type={'date'}
                                         label={'Дата'}
+                                        minValue={'11.11.2022'}
+                                        maxValue={'11.11.2025'}
                                         value={formStore.date}
                                         onChange={formStore.setDate.bind(formStore)}
-                                        required={true}
                                     />
                                     <FormControlApp
                                         as={'textarea'}

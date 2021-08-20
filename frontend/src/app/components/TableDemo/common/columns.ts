@@ -1,5 +1,3 @@
-import icons from "../../../lib/common/icons"
-import React from "react"
 import {Link} from "react-router-dom"
 import * as settingsService from "../../../../settingsService"
 import ColumnsFactory from "../../../../core/lib/templates/columnsFactory/columnsFactory"
@@ -78,47 +76,51 @@ class Columns extends ColumnsFactory {
         return (
             <div>
                 <Link
-                    to={"#"}
-                    onClick={() => {
-                        const personId = cell
-                        const rewards = true
-                        const eventsCreator = true
-                        const eventsParticipant = true
-                        const qaTasks = true
-                        const practices = true
-                        const payments = true
-                        const mobility = true
-                        const papers = true
+                    to = {"#"}
+        onClick = {()
+    =>
+        {
+            const personId = cell
+            const rewards = true
+            const eventsCreator = true
+            const eventsParticipant = true
+            const qaTasks = true
+            const practices = true
+            const payments = true
+            const mobility = true
+            const papers = true
 
-                        const url =
-                            myurl +
-                            "?" +
-                            "personId=" +
-                            personId +
-                            "&rewards=" +
-                            rewards +
-                            "&eventsCreator=" +
-                            eventsCreator +
-                            "&eventsParticipant=" +
-                            eventsParticipant +
-                            "&qaTasks=" +
-                            qaTasks +
-                            "&practices=" +
-                            practices +
-                            "&payments=" +
-                            payments +
-                            "&mobility=" +
-                            mobility +
-                            "&papers=" +
-                            papers
+            const url =
+                myurl +
+                "?" +
+                "personId=" +
+                personId +
+                "&rewards=" +
+                rewards +
+                "&eventsCreator=" +
+                eventsCreator +
+                "&eventsParticipant=" +
+                eventsParticipant +
+                "&qaTasks=" +
+                qaTasks +
+                "&practices=" +
+                practices +
+                "&payments=" +
+                payments +
+                "&mobility=" +
+                mobility +
+                "&papers=" +
+                papers
 
-                        window.open(url, "_blank")
-                    }}
-                >
-                    <i className={icons.PDF}/>
-                </Link>
-            </div>
-        )
+            window.open(url, "_blank")
+        }
+    }
+    >
+        <i className = {icons.PDF}
+        />
+        < /Link>
+        < /div>
+    )
     }
 }
 

@@ -2,8 +2,7 @@ import './FormSelectApp.scss'
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import Select, { components } from 'react-select'
-import { IFormSelectAppProps } from './extensions/form-select-app'
-import { init } from './extensions/form-select-app'
+import { IFormSelectAppProps, init } from './extensions/form-select-app'
 
 const { Option } = components
 

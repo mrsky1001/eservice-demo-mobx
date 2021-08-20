@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { IFormControlAppProps, init } from './extensions/form-control-app'
 import validateForm from './extensions/validation-control-app'
+import DatePickerApp from '../DatePickerApp/DatePickerApp'
 
 const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const initState = init(props)
@@ -10,7 +11,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const [isInvalid, setIsInvalid] = useState(undefined)
 
     const onBlur = (val) => {
-        const value = val.currentTarget.value
+        const value = val.currentTarget ? val.currentTarget.value : val
 
         const errors = validateForm({
             value: value,
@@ -30,32 +31,49 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
 
     return (
         <div className={initState.classes}>
-            {initState.label === undefined ? null : (
-                <Form.Label className={initState.classesLabel}>{initState.label}</Form.Label>
+            {initState.label ? (
+                <Form.Label className={initState.classesLabel}>
+                    {initState.label}
+                    {initState.required ? <span style={{ color: 'darkred' }}>*</span> : null}
+                </Form.Label>
+            ) : null}
+            {initState.type === 'date' ? (
+                <DatePickerApp
+                    id={initState.id}
+                    type={initState.type}
+                    style={initState.style}
+                    required={initState.required}
+                    onChange={onBlur}
+                    classes={initState.classesInput}
+                    selected={String(initState.value)}
+                    disabled={props.disabled}
+                    isInvalid={isInvalid}
+                />
+            ) : (
+                <Form.Control
+                    id={initState.id}
+                    as={initState.as}
+                    type={initState.type}
+                    style={initState.style}
+                    rows={initState.rows}
+                    required={initState.required}
+                    placeholder={initState.placeholder}
+                    onChange={onBlur}
+                    onBlur={onBlur}
+                    classes={initState.classesInput}
+                    value={initState.value}
+                    disabled={props.disabled}
+                    isInvalid={isInvalid}
+                    isValid={isInvalid === undefined ? isInvalid : !isInvalid}
+                />
             )}
-            <Form.Control
-                id={initState.id}
-                as={initState.as}
-                type={initState.type}
-                style={initState.style}
-                rows={initState.rows}
-                required={initState.required}
-                placeholder={initState.placeholder}
-                onChange={onBlur}
-                onBlur={onBlur}
-                classes={initState.classesInput}
-                value={initState.value}
-                disabled={props.disabled}
-                isInvalid={isInvalid}
-                isValid={isInvalid === undefined ? isInvalid : !isInvalid}
-            />
-            <div className={'form-errors'}>
+            <Form.Text className={'form-errors'}>
                 {validErrors.map((error, idx) => (
-                    <Form.Text key={idx} className={'text-danger'}>
+                    <div key={idx} className={'text-danger'}>
                         {error}
-                    </Form.Text>
+                    </div>
                 ))}
-            </div>
+            </Form.Text>
         </div>
     )
 }

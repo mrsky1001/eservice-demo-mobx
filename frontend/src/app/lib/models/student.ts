@@ -1,4 +1,5 @@
 import { Global, IGlobal } from '../../../core/lib/models/global'
+
 export interface IStudent extends IGlobal {
     login: string
     email: string
