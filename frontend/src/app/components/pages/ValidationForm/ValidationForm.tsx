@@ -24,7 +24,7 @@ export default observer(() => {
             e.preventDefault()
             e.stopPropagation()
         } else {
-            formStore.setValidated(true)
+            // formStore.setValidated(true)
 
             formStore.setResult(
                 JSON.stringify(
