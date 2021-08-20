@@ -16,8 +16,8 @@ export default (props: IValidationFormProps): string[] => {
     const errors: string[] = []
     const templatesErrors = {
         requiredError: 'Обязательное поле!',
-        minLengthError: `Поле должно содержать минимум ${props.minLength} симв!`,
-        maxLengthError: `Поле должно содержать максимум ${props.maxLength} симв!`,
+        minLengthError: `Поле должно содержать минимум ${props.minLength} символов!`,
+        maxLengthError: `Поле должно содержать максимум ${props.maxLength} символов!`,
         minValueError: `Поле должно содержать значение не менее (${props.minValue})!`,
         maxValueError: `Поле должно содержать значение не более (${props.maxValue})!`,
         emailError: 'Поле не соответствует типу электронной почты!',
@@ -33,9 +33,6 @@ export default (props: IValidationFormProps): string[] => {
 
     if (controlTypes.DATE === props.type) {
         const date = toDatePicker(String(props.value))
-        console.log(date)
-        console.log(toDatePicker(String(props.minValue)))
-        console.log(toDatePicker(String(props.maxValue)))
         props.minValue && date < toDatePicker(String(props.minValue)) && errors.push(templatesErrors.minValueError)
         props.minValue && date > toDatePicker(String(props.maxValue)) && errors.push(templatesErrors.maxValueError)
     }
