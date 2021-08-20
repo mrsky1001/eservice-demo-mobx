@@ -10,8 +10,6 @@ import { Col, NavLink, Row } from 'react-bootstrap'
 import ColApp from '../../../../core/components/ColApp/ColApp'
 import formStore from '../../../lib/store/pages/validation-form-store'
 import pagesStore from '../../../lib/store/pages-store'
-import DatePickerApp from '../../../../core/components/DatePickerApp/DatePickerApp'
-import { toDatePicker } from '../../../../core/lib/date'
 
 export default observer(() => {
     const currentPageRowNum = 0
@@ -26,8 +24,6 @@ export default observer(() => {
             e.preventDefault()
             e.stopPropagation()
         } else {
-            // formStore.setValidated(true)
-
             formStore.setResult(
                 JSON.stringify(
                     {
