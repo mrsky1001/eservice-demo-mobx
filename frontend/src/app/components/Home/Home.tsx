@@ -12,32 +12,30 @@ export default observer(() => {
         <Card className={'home-form'}>
             <Card.Header>Демонстрационные примеры работы: TypeScript + ReactJS + MOBX. Версия ядра v2.0.1</Card.Header>
             <Card.Body>
-                {pagesStore.examplesRows.map((row, idx) => (
-                    <Row key={idx} className={'row-body'}>
-                        {row.columns.map((example) => (
-                            <Card key={example.title} className={'card-form'}>
-                                <div className={'icon-container'}>
-                                    <i className={example.icon} />
-                                </div>
-                                <Card.Body>
-                                    <Card.Title>{example.title}</Card.Title>
+                <Row className={'row-body'}>
+                    {pagesStore.examples.map((example) => (
+                        <Card key={example.title} className={'card-form'}>
+                            <div className={'icon-container'}>
+                                <i className={example.icon} />
+                            </div>
+                            <Card.Body>
+                                <Card.Title>{example.title}</Card.Title>
+                                <div>
+                                    <Card.Text>{example.content}</Card.Text>
                                     <div>
-                                        <Card.Text>{example.content}</Card.Text>
-                                        <div>
-                                            <Card.Subtitle>Компоненты:</Card.Subtitle>
-                                            <Card.Text>{example.components}</Card.Text>
-                                        </div>
+                                        <Card.Subtitle>Компоненты:</Card.Subtitle>
+                                        <Card.Text>{example.components}</Card.Text>
                                     </div>
-                                </Card.Body>
-                                <Card.Body className={'show-button'}>
-                                    <Button href={example.route} variant={'primary'}>
-                                        Посмотреть
-                                    </Button>
-                                </Card.Body>
-                            </Card>
-                        ))}
-                    </Row>
-                ))}
+                                </div>
+                            </Card.Body>
+                            <Card.Body className={'show-button'}>
+                                <Button href={example.route} variant={'primary'}>
+                                    Посмотреть
+                                </Button>
+                            </Card.Body>
+                        </Card>
+                    ))}
+                </Row>
             </Card.Body>
             <Card.Footer>* - Данный примеры работают с версии ядра v1.1.0</Card.Footer>
         </Card>
