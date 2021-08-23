@@ -1,0 +1,24 @@
+.template-page {
+  .links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .link-page {
+      padding: 10px 5px 10px 5px;
+      border-bottom: 3px solid white;
+
+      &:hover {
+        border-bottom: 3px solid #4995b3;
+      }
+
+      //margin: auto;
+      //height: 100%;
+      //padding-top: 50%;
+      //width: auto;
+      //background-color: #eeeeee;
+      ////padding: 50%;
+      //position: absolute;
+    }
+  }
+}

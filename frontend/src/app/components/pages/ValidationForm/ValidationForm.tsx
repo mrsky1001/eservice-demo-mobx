@@ -91,7 +91,7 @@ export default observer(() => {
                         </Form>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={handleSubmit} className={'button'} variant={'primary'}>
+                        <Button onClick={handleSubmit} className={'button pull-right'} variant={'primary'}>
                             <i className={'fa fa-arrow'} />
                             Отправить
                         </Button>

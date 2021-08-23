@@ -1,7 +1,7 @@
 import './TemplatePage.scss'
 
 import React from 'react'
-import { Col, Nav, Row } from 'react-bootstrap'
+import { Col, Nav, NavLink, Row } from 'react-bootstrap'
 import pagesStore from '../../lib/store/pages-store'
 import ColApp from '../../../core/components/ColApp/ColApp'
 import routes from '../../lib/routes'
@@ -25,14 +25,24 @@ export const TemplatePage = (props: ITemplatePage): JSX.Element => {
             : pagesStore.examples[props.currentPage + 1]
 
     return (
-        <Row>
-            <Col lg={leftLG} md={0}>
-                <Nav.Link className={'link-page'} href={prevPage.route}>{`<< ${prevPage.title}`}</Nav.Link>
-            </Col>
-            <ColApp lg={centerLG} md={12} body={props.component} />
-            <Col>
-                <Nav.Link className={'link-page'} href={nextPage.route}>{`${nextPage.title} >>`}</Nav.Link>
-            </Col>
-        </Row>
+        <div className={'template-page'}>
+            <Row>
+                <Col lg={leftLG} md={0} />
+                <Col lg={centerLG} md={0}>
+                    <div className={'links'}>
+                        <NavLink className={'link-page'} href={prevPage.route}>
+                            {prevPage.title}
+                        </NavLink>
+                        <NavLink className={'link-page'} href={nextPage.route}>
+                            {nextPage.title}
+                        </NavLink>
+                    </div>
+                </Col>
+            </Row>
+            <Row>
+                <Col lg={leftLG} md={0} />
+                <ColApp lg={centerLG} md={12} body={props.component} />
+            </Row>
+        </div>
     )
 }
