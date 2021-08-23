@@ -1,3 +1,5 @@
+import { main } from '@popperjs/core'
+
 export const joinUrl = (...urls: string[]): string => {
     let res = ''
 
@@ -8,6 +10,14 @@ export const joinUrl = (...urls: string[]): string => {
     return res
 }
 
+export const appendStr = (mainStr: string, str: string): string => {
+    if (mainStr) return mainStr.includes(str) ? mainStr : mainStr + str
+    else return str
+}
+
+export const checkAndInsert = (checkValue: string | boolean | number, mainStr: string, str: string): string => {
+    return checkValue ? appendStr(mainStr, str) : mainStr
+}
 // export const toSelectOptions = (list, fieldName, label = fieldName, icon) => {
 //     const listLabels = Array.isArray(label) ? label : [label]
 //

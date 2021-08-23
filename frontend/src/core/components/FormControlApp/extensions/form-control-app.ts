@@ -1,4 +1,5 @@
 import { CSSProperties, ElementType } from 'react'
+import { appendStr } from '../../../lib/common'
 
 export interface IFormControlAppProps {
     id?: string
@@ -36,6 +37,6 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
     }
 
     return Object.assign(emptyState, props, {
-        classes: 'form-control-app ' + props.classes,
+        classes: appendStr(props.classes, ' form-control-app'),
     })
 }

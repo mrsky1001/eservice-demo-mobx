@@ -5,6 +5,7 @@ import BootstrapTable, {
     SortOrder,
 } from 'react-bootstrap-table-next'
 import React from 'react'
+import { appendStr, checkAndInsert } from '../../../lib/common'
 
 interface IAttrs {
     'data-label'?: string
@@ -37,6 +38,7 @@ export interface ITableAppProps {
     headerClasses?: string
     selectRow?: SelectRowProps<any>
     expandRow?: ExpandRowProps<any, number>
+    cellEdit?: any
     defaultSorted?: [{ dataField: any; order: SortOrder }]
     tableRef?: React.LegacyRef<BootstrapTable<any, number>>
     rowClasses?: string
@@ -44,17 +46,37 @@ export interface ITableAppProps {
     rowStyle?: React.CSSProperties | ((row: any, rowIndex: number) => React.CSSProperties)
 }
 
-export const init = (props: ITableAppProps): ITableAppProps => {
-    let classes = props.classes
-    classes = props.isFlexibleIPad ? classes + ' table-flex-ipad' : classes
-    classes = props.isFlexibleIPhone ? classes + ' table-flex-iphone' : classes
+const emptyState = {
+    data: [],
+    hover: false,
+    striped: false,
+    loading: false,
+    condensed: false,
+    isSearched: true,
+    isSizerPage: true,
+    isPagination: true,
+    isFlexibleIPad: true,
+    isFirstRowBold: false,
+    isColumnsHeader: true,
+    isFlexibleIPhone: true,
 
-    if (props.isColumnsHeader) {
-        classes = props.isFlexibleIPhone ? classes + ' columns-header-iphone' : classes
-        classes = props.isFlexibleIPad ? classes + ' columns-header-ipad' : classes
+    noDataIndication: 'Нет данных',
+}
+
+export const init = (props: ITableAppProps): ITableAppProps => {
+    const replacedProps = Object.assign(emptyState, props)
+
+    let classes = replacedProps.classes ? replacedProps.classes : 'table-app'
+
+    classes = checkAndInsert(replacedProps.isFlexibleIPad, classes, ' table-flex-ipad')
+    classes = checkAndInsert(replacedProps.isFlexibleIPhone, classes, ' table-flex-iphone')
+
+    if (replacedProps.isColumnsHeader) {
+        classes = checkAndInsert(replacedProps.isFlexibleIPhone, classes, ' columns-header-iphone')
+        classes = checkAndInsert(replacedProps.isFlexibleIPad, classes, ' columns-header-ipad')
     }
 
-    const columns = props.columns
+    const columns = replacedProps.columns
     columns.forEach((column) => {
         column.title = true
         column.headerTitle = true
@@ -63,27 +85,10 @@ export const init = (props: ITableAppProps): ITableAppProps => {
         column.attrs = { 'data-label': column.text }
     })
 
-    const emptyState = {
-        data: [],
-        hover: false,
-        striped: false,
-        loading: false,
-        condensed: false,
-        isSearched: true,
-        isSizerPage: true,
-        isPagination: true,
-        isFlexibleIPad: true,
-        isFirstRowBold: false,
-        isColumnsHeader: true,
-        isFlexibleIPhone: true,
-
-        noDataIndication: 'Нет данных',
-    }
-
-    return Object.assign(emptyState, props, {
+    return Object.assign(emptyState, replacedProps, {
         classes: classes,
         columns: columns,
 
-        rowClasses: props.isFirstRowBold ? props.rowClasses + ' first-bold' : props.rowClasses,
+        rowClasses: checkAndInsert(replacedProps.isFirstRowBold, replacedProps.rowClasses, ' first-bold'),
     })
 }

@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx'
-import { IDemoPage, IDemoRowPage } from '../models/demo-page'
+import { IDemoPage } from '../models/demo-page'
 import routes from '../routes'
 
 interface IPagesStore {
@@ -11,7 +11,7 @@ class PagesStore implements IPagesStore {
         {
             title: 'Простая форма',
             content: 'Заполнение и вывод результата на экран.',
-            components: 'FormInputCustom, Button',
+            components: 'FormControlApp, Button',
             route: '#' + routes.SIMPLE_FORM,
             icon: 'fa fa-square-o',
         },
@@ -25,16 +25,23 @@ class PagesStore implements IPagesStore {
         {
             title: 'Форма с валидацией полей',
             content: 'Проверка заполненных полей (типы полей: текстовое, числовое, email, пароль, дата).',
-            components: 'FormControlCustom, Button',
+            components: 'FormControlApp, Button',
             route: '#' + routes.VALID_FORM,
             icon: 'fa fa-check-square-o',
         },
         {
             title: 'Простая таблица',
             content: 'Вывод данных в таблицу.',
-            components: 'TableCustom, FormInputCustom, Button',
+            components: 'TableApp, FormControlApp, Button',
             route: '#' + routes.SIMPLE_TABLE,
             icon: 'fa fa-table',
+        },
+        {
+            title: 'Редактируемая таблица',
+            content: 'Ввод и вывод данных в таблицу.',
+            components: 'TableApp, FormControlApp, Button',
+            route: '#' + routes.EDIT_TABLE,
+            icon: 'fa fa-outdent',
         },
     ]
 

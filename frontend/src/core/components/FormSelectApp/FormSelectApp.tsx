@@ -3,6 +3,7 @@ import React from 'react'
 import { Form } from 'react-bootstrap'
 import Select, { components } from 'react-select'
 import { IFormSelectAppProps, init } from './extensions/form-select-app'
+import { appendStr, checkAndInsert } from '../../lib/common'
 
 const { Option } = components
 
@@ -59,9 +60,7 @@ const FormSelectApp = (props: IFormSelectAppProps): JSX.Element => {
                     options={initState.options}
                     defaultOptions={initState.defaultOptions}
                     required={initState.required}
-                    placeholder={
-                        initState.required ? initState.placeholder + ' (обязательное поле)' : initState.placeholder
-                    }
+                    placeholder={checkAndInsert(initState.required, initState.placeholder, ' (обязательное поле)')}
                     isClearable={initState.isCanEmpty}
                     onChange={handlerChange}
                     className={initState.classesSelect}

@@ -25,6 +25,7 @@ export const TableApp = (props: ITableAppProps): JSX.Element => {
                 <div>
                     {initState.isSearched ? <SearchTableApp {...toolkitprops.searchProps} /> : null}
                     <BootstrapTable
+                        keyField="id"
                         id={initState.id}
                         ref={initState.tableRef}
                         loading={initState.loading}
@@ -35,7 +36,6 @@ export const TableApp = (props: ITableAppProps): JSX.Element => {
                         expandRow={initState.expandRow}
                         rowStyle={initState.rowStyle}
                         selectRow={initState.selectRow}
-                        // selectedRow={selectedRow}
                         defaultSorted={initState.defaultSorted}
                         striped={initState.striped}
                         hover={initState.hover}
