@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 /* eslint-disable */
 const settingsService = require('../app/settings-service')
 const ParcelProxyServer = require('parcel-proxy-server')

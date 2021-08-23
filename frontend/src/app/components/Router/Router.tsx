@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import React from 'react'
 

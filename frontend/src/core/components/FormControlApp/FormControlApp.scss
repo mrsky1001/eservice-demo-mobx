@@ -1,11 +1,16 @@
+/*!
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 .form-control-app {
   label {
     margin-top: 10px;
   }
 
   .form-errors {
-    margin-top:0;
-    *{
+    margin-top: 0;
+
+    * {
       padding: 0 0 0 10px;
     }
   }

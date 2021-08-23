@@ -1,9 +1,13 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 import './FormSelectApp.scss'
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import Select, { components } from 'react-select'
 import { IFormSelectAppProps, init } from './extensions/form-select-app'
-import { appendStr, checkAndInsert } from '../../lib/common'
+import { checkAndInsert } from '../../lib/common'
 
 const { Option } = components
 

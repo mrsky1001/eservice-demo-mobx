@@ -1,4 +1,6 @@
-import { main } from '@popperjs/core'
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
 
 export const joinUrl = (...urls: string[]): string => {
     let res = ''

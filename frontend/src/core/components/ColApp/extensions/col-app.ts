@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 declare type NumberAttr = number | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12'
 declare type ColOrder = 'first' | 'last' | NumberAttr
 declare type ColSize = boolean | 'auto' | NumberAttr

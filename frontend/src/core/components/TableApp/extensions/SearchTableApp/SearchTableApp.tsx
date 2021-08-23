@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 import './SearchTableApp.scss'
 import React from 'react'
 import { Row } from 'react-bootstrap'

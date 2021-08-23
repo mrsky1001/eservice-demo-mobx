@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 import axios, { AxiosError, AxiosResponse } from 'axios'
 import coreUrls from '../core-urls'
 import history from '../history/create-browser-history'

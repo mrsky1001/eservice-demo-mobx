@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
+ */
+
 import BootstrapTable, {
     ColumnDescription,
     ExpandRowProps,
@@ -5,7 +9,7 @@ import BootstrapTable, {
     SortOrder,
 } from 'react-bootstrap-table-next'
 import React from 'react'
-import { appendStr, checkAndInsert } from '../../../lib/common'
+import { checkAndInsert } from '../../../lib/common'
 
 interface IAttrs {
     'data-label'?: string
