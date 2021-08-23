@@ -20,7 +20,7 @@ class PagesStore implements IPagesStore {
             content: 'Список групп для выбора и отображения определенного значения.',
             components: 'FormSelectApp, Button',
             route: '#' + routes.SELECT_FORM,
-            icon: 'fa fa-list-alt',
+            icon: 'fa fa-minus-square-o',
         },
         {
             title: 'Форма с валидацией полей',
@@ -32,16 +32,23 @@ class PagesStore implements IPagesStore {
         {
             title: 'Простая таблица',
             content: 'Вывод данных в таблицу.',
-            components: 'TableApp, FormControlApp, Button',
+            components: 'TableApp, Button',
             route: '#' + routes.SIMPLE_TABLE,
             icon: 'fa fa-table',
         },
         {
             title: 'Редактируемая таблица',
-            content: 'Ввод и вывод данных в таблицу.',
+            content: 'Редактирование данных в таблице.',
             components: 'TableApp, FormControlApp, Button',
             route: '#' + routes.EDIT_TABLE,
-            icon: 'fa fa-outdent',
+            icon: 'fa fa-address-card-o',
+        },
+        {
+            title: 'Расширяемая таблица',
+            content: 'Вывод сложных объектов в таблицу. Подстроки и раширение таблицы.',
+            components: 'TableApp, Button',
+            route: '#' + routes.EDIT_TABLE,
+            icon: 'fa fa-indent',
         },
     ]
 

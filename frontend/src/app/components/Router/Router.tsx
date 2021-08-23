@@ -8,7 +8,8 @@ import SimpleForm from '../pages/SimpleForm/SimpleForm'
 import SelectForm from '../pages/SelectForm/SelectForm'
 import ValidationForm from '../pages/ValidationForm/ValidationForm'
 import SimpleTable from '../pages/SimpleTable/SimpleTable'
-import EditTable from '../pages/EditTable/EditTable'
+import EditTable from '../pages/EditTable/ExpandableTable'
+import ExpandableTable from '../pages/EditTable/ExpandableTable'
 
 const Router = observer(() => {
     return (
@@ -20,6 +21,7 @@ const Router = observer(() => {
                 <Route exact path={routes.SELECT_FORM} component={SelectForm} />
                 <Route exact path={routes.SIMPLE_TABLE} component={SimpleTable} />
                 <Route exact path={routes.EDIT_TABLE} component={EditTable} />
+                <Route exact path={routes.EXPAND_TABLE} component={ExpandableTable} />
                 <Redirect from="*" to={routes.HOME} />
             </Switch>
         </HashRouter>

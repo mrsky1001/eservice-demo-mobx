@@ -4,5 +4,6 @@ export default {
     VALID_FORM: '/valid-form',
     SIMPLE_TABLE: '/simple-table',
     EDIT_TABLE: '/edit-table',
+    EXPAND_TABLE: '/expand-table',
     SELECT_FORM: '/select-form',
 }
