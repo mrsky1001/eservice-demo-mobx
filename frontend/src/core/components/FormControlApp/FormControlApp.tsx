@@ -55,7 +55,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     as={initState.as}
                     key={initState.id}
                     type={initState.type}
-                    autoFocus={true}
+                    autoFocus={initState.autoFocus}
                     style={initState.style}
                     rows={initState.rows}
                     required={initState.required}

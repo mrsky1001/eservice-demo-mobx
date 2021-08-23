@@ -12,6 +12,7 @@ export interface IFormControlAppProps {
     maxValue?: number | string
     minLength?: number
     maxLength?: number
+    autoFocus?: boolean
     placeholder?: string
     style?: CSSProperties
     patternError?: string

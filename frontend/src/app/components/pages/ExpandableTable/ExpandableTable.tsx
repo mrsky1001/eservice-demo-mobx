@@ -18,7 +18,7 @@ export default observer(() => {
                 <Card>
                     <Card.Header>Расширяемая таблица со списком пользователей</Card.Header>
                     <Card.Body>
-                        <TableApp id={'editTable'} data={tableStore.users} columns={columns()} />
+                        <TableApp id={'editTable'} data={tableStore.users} columns={columns} />
                     </Card.Body>
                 </Card>
             }
