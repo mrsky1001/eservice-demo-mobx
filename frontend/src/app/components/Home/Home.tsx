@@ -14,7 +14,9 @@ import { observer } from 'mobx-react-lite'
 export default observer(() => {
     return (
         <Card className={'home-form'}>
-            <Card.Header>Демонстрационные примеры работы: TypeScript + ReactJS + MOBX. Версия ядра v2.0.1</Card.Header>
+            <Card.Header>
+                Демо-примеры построения компонентов на стеке: TypeScript + ReactJS + MOBX. Версия ядра v2.0.1
+            </Card.Header>
             <Card.Body>
                 <Row className={'row-body'}>
                     {pagesStore.examples.map((example) => (
