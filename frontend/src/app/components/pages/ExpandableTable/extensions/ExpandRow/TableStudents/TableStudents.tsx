@@ -5,7 +5,6 @@
 import './TableStudents.scss'
 
 import React, { useContext } from 'react'
-import Card from 'react-bootstrap/Card'
 import { TableApp } from '../../../../../../../core/components/TableApp/TableApp'
 import columns from './extensions/columns'
 import { observer } from 'mobx-react-lite'
@@ -17,13 +16,6 @@ export default observer(() => {
     const group: Group = new Group(useContext(TableStudentsContext))
 
     return (
-        <TableApp
-            id={'simpleTable'}
-            data={group.students}
-            columns={columns}
-            isSearched={false}
-            isExpandable={false}
-            isPagination={false}
-        />
+        <TableApp id={'simpleTable'} data={group.students} columns={columns} isSearched={false} isPagination={false} />
     )
 })

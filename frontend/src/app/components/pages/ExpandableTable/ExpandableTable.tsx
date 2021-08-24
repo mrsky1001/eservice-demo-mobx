@@ -14,7 +14,6 @@ import { TemplatePage } from '../../TemplatePage/TemplatePage'
 import ExpandRow from './extensions/ExpandRow/ExpandRow'
 
 export default observer(() => {
-    const expand = ExpandRow({ onlyOneExpanding: false })
     return (
         <TemplatePage
             currentPage={5}
@@ -24,7 +23,12 @@ export default observer(() => {
                 <Card>
                     <Card.Header>Расширяемая таблица со списком пользователей</Card.Header>
                     <Card.Body>
-                        <TableApp id={'expandTable'} data={tableStore.groups} columns={columns} expandRow={expand} />
+                        <TableApp
+                            id={'expandTable'}
+                            data={tableStore.groups}
+                            columns={columns}
+                            expandRow={ExpandRow({ onlyOneExpanding: false })}
+                        />
                     </Card.Body>
                 </Card>
             }

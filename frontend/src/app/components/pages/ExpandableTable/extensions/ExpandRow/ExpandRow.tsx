@@ -1,6 +1,7 @@
 import './ExpandRow.scss'
 import React from 'react'
 import TableStudents from './TableStudents/TableStudents'
+import Group from '../../../../../lib/models/group'
 
 interface IExpandRowProps {
     onlyOneExpanding: boolean

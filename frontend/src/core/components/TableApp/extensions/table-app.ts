@@ -32,7 +32,6 @@ export interface ITableAppProps {
     condensed?: boolean
     isSearched?: boolean
     isSizerPage?: boolean
-    isExpandable?: boolean
     isPagination?: boolean
     isFlexibleIPad?: boolean
     isFirstRowBold?: boolean
@@ -51,24 +50,23 @@ export interface ITableAppProps {
     rowStyle?: React.CSSProperties | ((row: any, rowIndex: number) => React.CSSProperties)
 }
 
-const emptyState = {
-    data: [],
-    hover: false,
-    striped: false,
-    loading: false,
-    condensed: false,
-    isSearched: true,
-    isSizerPage: true,
-    isExpandable: true,
-    isPagination: true,
-    isFlexibleIPad: true,
-    isFirstRowBold: false,
-    isColumnsHeader: true,
-    isFlexibleIPhone: true,
-    noDataIndication: 'Нет данных',
-}
-
 export const init = (props: ITableAppProps): ITableAppProps => {
+    const emptyState = {
+        data: [],
+        hover: false,
+        striped: false,
+        loading: false,
+        condensed: false,
+        isSearched: true,
+        isSizerPage: true,
+        isPagination: true,
+        isFlexibleIPad: true,
+        isFirstRowBold: false,
+        isColumnsHeader: true,
+        isFlexibleIPhone: true,
+        noDataIndication: 'Нет данных',
+    }
+
     const replacedProps = Object.assign(emptyState, props)
 
     let classes = replacedProps.classes ? replacedProps.classes : 'table-app'
@@ -93,7 +91,6 @@ export const init = (props: ITableAppProps): ITableAppProps => {
     return Object.assign(emptyState, replacedProps, {
         classes: classes,
         columns: columns,
-        expandRow: replacedProps.isExpandable && replacedProps.expandRow ? replacedProps.expandRow : undefined,
 
         rowClasses: checkAndInsert(replacedProps.isFirstRowBold, replacedProps.rowClasses, ' first-bold'),
     })
