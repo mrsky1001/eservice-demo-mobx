@@ -12,7 +12,7 @@ import SimpleForm from '../pages/SimpleForm/SimpleForm'
 import SelectForm from '../pages/SelectForm/SelectForm'
 import ValidationForm from '../pages/ValidationForm/ValidationForm'
 import SimpleTable from '../pages/SimpleTable/SimpleTable'
-import EditTable from '../pages/ExpandableTable/ExpandableTable'
+import EditTable from '../pages/EditTable/EditTable'
 import ExpandableTable from '../pages/ExpandableTable/ExpandableTable'
 
 const Router = observer(() => {

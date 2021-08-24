@@ -1,6 +1,8 @@
 export default [
     {
         name: 'СБП-001',
+        date: '12.14.2014',
+        faculty: 'ФВР',
         students: [
             {
                 login: 'PeterQuill',
@@ -24,6 +26,8 @@ export default [
     },
     {
         name: 'ИМИ-022',
+        date: '12.14.2018',
+        faculty: 'АМП',
         students: [
             {
                 login: 'Fill',

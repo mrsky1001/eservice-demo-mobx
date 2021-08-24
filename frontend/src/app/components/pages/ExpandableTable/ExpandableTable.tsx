@@ -6,11 +6,12 @@ import './ExpandableTable.scss'
 
 import React from 'react'
 import Card from 'react-bootstrap/Card'
-import tableStore from '../../../lib/store/pages/edit-table-store'
+import tableStore from '../../../lib/store/pages/expand-table-store'
 import { TableApp } from '../../../../core/components/TableApp/TableApp'
-import columns from './common/columns'
+import columns from './extensions/columns'
 import { observer } from 'mobx-react-lite'
 import { TemplatePage } from '../../TemplatePage/TemplatePage'
+import ExpandRow from './extensions/ExpandRow/ExpandRow'
 
 export default observer(() => {
     return (
@@ -22,7 +23,12 @@ export default observer(() => {
                 <Card>
                     <Card.Header>Расширяемая таблица со списком пользователей</Card.Header>
                     <Card.Body>
-                        <TableApp id={'editTable'} data={tableStore.users} columns={columns} />
+                        <TableApp
+                            id={'expandTable'}
+                            data={tableStore.groups}
+                            columns={columns}
+                            expandRow={ExpandRow({ onlyOneExpanding: false })}
+                        />
                     </Card.Body>
                 </Card>
             }

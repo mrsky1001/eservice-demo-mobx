@@ -8,7 +8,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import tableStore from '../../../lib/store/pages/table-store'
 import { TableApp } from '../../../../core/components/TableApp/TableApp'
-import columns from './common/columns'
+import columns from './extensions/columns'
 import { observer } from 'mobx-react-lite'
 import { TemplatePage } from '../../TemplatePage/TemplatePage'
 

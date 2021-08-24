@@ -3,24 +3,19 @@
  */
 
 import { makeAutoObservable } from 'mobx'
-import Student from '../../models/student'
-import rawUsers from '../../../../../test-data/users'
+import rawGroups from '../../../../../test-data/groups'
+import Group from '../../models/group'
 
-interface IEditTableStore {
-    users: Student[]
+interface IExpandTableStore {
+    groups: Group[]
 }
 
-class EditTableStore implements IEditTableStore {
-    users: Student[] = rawUsers.map((u) => new Student(u))
+class ExpandTableStore implements IExpandTableStore {
+    groups: Group[] = rawGroups.map((u) => new Group(u))
 
     constructor() {
         makeAutoObservable(this)
     }
-
-    changeUserLogin(userId, val) {
-        this.users.find((u) => u.id === userId).login = val
-        this.users = [...this.users]
-    }
 }
 
-export default new EditTableStore()
+export default new ExpandTableStore()

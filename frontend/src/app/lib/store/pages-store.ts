@@ -51,7 +51,7 @@ class PagesStore implements IPagesStore {
             title: 'Расширяемая таблица',
             content: 'Вывод сложных объектов в таблицу. Подстроки и раширение таблицы.',
             components: 'TableApp, Button',
-            route: '#' + routes.EDIT_TABLE,
+            route: '#' + routes.EXPAND_TABLE,
             icon: 'fa fa-indent',
         },
     ]

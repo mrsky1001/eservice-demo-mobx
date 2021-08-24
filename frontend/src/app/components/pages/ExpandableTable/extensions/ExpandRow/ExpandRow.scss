@@ -1,0 +1,18 @@
+th.expand-cell-header {
+  > .fa.fa-bars {
+    display: none;
+  }
+}
+
+
+.parent-expand {
+  background-color: antiquewhite;
+}
+
+td {
+  &.expand-cell {
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
