@@ -32,6 +32,7 @@ export interface ITableAppProps {
     condensed?: boolean
     isSearched?: boolean
     isSizerPage?: boolean
+    isExpandable?: boolean
     isPagination?: boolean
     isFlexibleIPad?: boolean
     isFirstRowBold?: boolean
@@ -58,12 +59,12 @@ const emptyState = {
     condensed: false,
     isSearched: true,
     isSizerPage: true,
+    isExpandable: true,
     isPagination: true,
     isFlexibleIPad: true,
     isFirstRowBold: false,
     isColumnsHeader: true,
     isFlexibleIPhone: true,
-
     noDataIndication: 'Нет данных',
 }
 
@@ -92,6 +93,7 @@ export const init = (props: ITableAppProps): ITableAppProps => {
     return Object.assign(emptyState, replacedProps, {
         classes: classes,
         columns: columns,
+        expandRow: replacedProps.isExpandable && replacedProps.expandRow ? replacedProps.expandRow : undefined,
 
         rowClasses: checkAndInsert(replacedProps.isFirstRowBold, replacedProps.rowClasses, ' first-bold'),
     })

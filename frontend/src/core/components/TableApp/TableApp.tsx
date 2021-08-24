@@ -23,34 +23,38 @@ export const TableApp = (props: ITableAppProps): JSX.Element => {
         totalSize: initState.data.length,
     }
 
-    const contentTable = ({ paginationTableProps }) => (
-        <ToolkitProvider keyField={'id'} columns={initState.columns} data={initState.data} search>
-            {(toolkitprops) => (
-                <div>
-                    {initState.isSearched ? <SearchTableApp {...toolkitprops.searchProps} /> : null}
-                    <BootstrapTable
-                        keyField="id"
-                        id={initState.id}
-                        ref={initState.tableRef}
-                        loading={initState.loading}
-                        noDataIndication={initState.noDataIndication}
-                        classes={initState.classes}
-                        rowClasses={initState.rowClasses}
-                        headerClasses={initState.headerClasses}
-                        expandRow={initState.expandRow}
-                        rowStyle={initState.rowStyle}
-                        selectRow={initState.selectRow}
-                        defaultSorted={initState.defaultSorted}
-                        striped={initState.striped}
-                        hover={initState.hover}
-                        condensed={initState.condensed}
-                        {...toolkitprops.baseProps}
-                        {...paginationTableProps}
-                    />
-                </div>
-            )}
-        </ToolkitProvider>
-    )
+    const contentTable = ({ paginationTableProps }) => {
+        const pagination = initState.isPagination ? { ...paginationTableProps } : undefined
+
+        return (
+            <ToolkitProvider keyField={'id'} columns={initState.columns} data={initState.data} search>
+                {(toolkitprops) => (
+                    <div>
+                        {initState.isSearched ? <SearchTableApp {...toolkitprops.searchProps} /> : null}
+                        <BootstrapTable
+                            keyField="id"
+                            id={initState.id}
+                            ref={initState.tableRef}
+                            loading={initState.loading}
+                            noDataIndication={initState.noDataIndication}
+                            classes={initState.classes}
+                            rowClasses={initState.rowClasses}
+                            headerClasses={initState.headerClasses}
+                            expandRow={initState.expandRow}
+                            rowStyle={initState.rowStyle}
+                            selectRow={initState.selectRow}
+                            defaultSorted={initState.defaultSorted}
+                            striped={initState.striped}
+                            hover={initState.hover}
+                            condensed={initState.condensed}
+                            {...toolkitprops.baseProps}
+                            {...pagination}
+                        />
+                    </div>
+                )}
+            </ToolkitProvider>
+        )
+    }
 
     return (
         <div className={'table-app'}>

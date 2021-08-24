@@ -14,16 +14,16 @@ import Group from '../../../../../../lib/models/group'
 
 export default observer(() => {
     // @ts-ignore
-    const context = useContext(TableStudentsContext)
-    console.log(context)
     const group: Group = new Group(useContext(TableStudentsContext))
 
     return (
-        <Card>
-            <Card.Header>Таблица со списком пользователей</Card.Header>
-            <Card.Body>
-                <TableApp id={'simpleTable'} data={group.students} columns={columns} />
-            </Card.Body>
-        </Card>
+        <TableApp
+            id={'simpleTable'}
+            data={group.students}
+            columns={columns}
+            isSearched={false}
+            isExpandable={false}
+            isPagination={false}
+        />
     )
 })
