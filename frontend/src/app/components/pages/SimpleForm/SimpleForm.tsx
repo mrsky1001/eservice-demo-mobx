@@ -22,39 +22,41 @@ export default observer(() => {
     }
 
     return (
-        <TemplatePage
-            currentPage={0}
-            component={
-                <>
-                    <Card className={'simple-form justify-content-center'}>
-                        <Card.Header>Проста форма</Card.Header>
-                        <Card.Body>
-                            <Form onSubmit={handleSubmit}>
-                                <Form.Label>{'Введите "Имя пользователя" и посмотрите результат!'}</Form.Label>
-                                <FormControlApp
-                                    label={'Имя пользователь'}
-                                    value={formStore.userName}
-                                    onChange={formStore.setUserName.bind(formStore)}
-                                />
-                                <FormControlApp
-                                    as={'textarea'}
-                                    label={'Вывод'}
-                                    value={formStore.info}
-                                    disabled={true}
-                                    onChange={formStore.setInfo.bind(formStore)}
-                                />
-                            </Form>
-                        </Card.Body>
-                        <Card.Footer>
-                            <Button onClick={handleSubmit} className={'pull-right button'} variant={'primary'}>
-                                <i className={'fa fa-arrow'} />
-                                Вывести
-                            </Button>
-                        </Card.Footer>
-                    </Card>
-                    <Code />
-                </>
-            }
-        />
+        <>
+            <TemplatePage
+                currentPage={0}
+                component={
+                    <>
+                        <Card className={'simple-form justify-content-center'}>
+                            <Card.Header>Проста форма</Card.Header>
+                            <Card.Body>
+                                <Form onSubmit={handleSubmit}>
+                                    <Form.Label>{'Введите "Имя пользователя" и посмотрите результат!'}</Form.Label>
+                                    <FormControlApp
+                                        label={'Имя пользователь'}
+                                        value={formStore.userName}
+                                        onChange={formStore.setUserName.bind(formStore)}
+                                    />
+                                    <FormControlApp
+                                        as={'textarea'}
+                                        label={'Вывод'}
+                                        value={formStore.info}
+                                        disabled={true}
+                                        onChange={formStore.setInfo.bind(formStore)}
+                                    />
+                                </Form>
+                            </Card.Body>
+                            <Card.Footer>
+                                <Button onClick={handleSubmit} className={'pull-right button'} variant={'primary'}>
+                                    <i className={'fa fa-arrow'} />
+                                    Вывести
+                                </Button>
+                            </Card.Footer>
+                        </Card>
+                    </>
+                }
+            />
+            <Code />
+        </>
     )
 })

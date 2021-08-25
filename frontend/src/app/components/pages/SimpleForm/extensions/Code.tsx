@@ -3,20 +3,12 @@
  */
 
 import React from 'react'
-import Card from 'react-bootstrap/Card'
-import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/light'
-import { docco } from 'react-syntax-highlighter/dist/esm/async-languages/hljs'
-import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
-import prism from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
-
-SyntaxHighlighter.registerLanguage('jsx', jsx)
+import TemplateCode from '../../../TemplateCode/TemplateCode'
 
 const Code = (): JSX.Element => (
-    <Card className={'simple-form justify-content-center'}>
-        <Card.Header>Код компонента SimpleForm.tsx</Card.Header>
-        <Card.Body>
-            <SyntaxHighlighter language="jsx" style={jsx}>
-                {`
+    <TemplateCode
+        title={'SimpleForm.tsx'}
+        code={`
 <Card className={'simple-form justify-content-center'}>
     <Card.Header>Проста форма</Card.Header>
     <Card.Body>
@@ -42,11 +34,8 @@ const Code = (): JSX.Element => (
             Вывести
         </Button>
     </Card.Footer>
-</Card>`}
-            </SyntaxHighlighter>
-        </Card.Body>
-        <Card.Footer></Card.Footer>
-    </Card>
+</Card>
+                        `}
+    />
 )
-
 export default Code

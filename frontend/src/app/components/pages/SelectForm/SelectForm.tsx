@@ -13,6 +13,7 @@ import formStore from '../../../lib/store/pages/select-form-store'
 import groups from '../../../../../test-data/groups'
 import FormControlApp from '../../../../core/components/FormControlApp/FormControlApp'
 import { TemplatePage } from '../../TemplatePage/TemplatePage'
+import Code from './extensions/Code'
 
 export default observer(() => {
     useEffect(() => {
@@ -20,32 +21,35 @@ export default observer(() => {
     }, [])
 
     return (
-        <TemplatePage
-            currentPage={1}
-            component={
-                <Card className={'validation-form justify-content-center'}>
-                    <Card.Header>Форма с выпадающим полем</Card.Header>
-                    <Card.Body>
-                        {formStore.loading ? null : (
-                            <Form>
-                                <FormSelectApp
-                                    label={'Выберите группу'}
-                                    value={formStore.selectedGroup.toSelectOption('name')}
-                                    options={formStore.groups.map((g) => g.toSelectOption('name'))}
-                                    onChange={formStore.selectGroup.bind(formStore)}
-                                />
-                                <FormControlApp
-                                    as={'textarea'}
-                                    label={'Вывод'}
-                                    value={formStore.selectedGroup.getStudentsText()}
-                                    disabled={true}
-                                    rows={10}
-                                />
-                            </Form>
-                        )}
-                    </Card.Body>
-                </Card>
-            }
-        />
+        <>
+            <TemplatePage
+                currentPage={1}
+                component={
+                    <Card className={'validation-form justify-content-center'}>
+                        <Card.Header>Форма с выпадающим полем</Card.Header>
+                        <Card.Body>
+                            {formStore.loading ? null : (
+                                <Form>
+                                    <FormSelectApp
+                                        label={'Выберите группу'}
+                                        value={formStore.selectedGroup.toSelectOption('name')}
+                                        options={formStore.groups.map((g) => g.toSelectOption('name'))}
+                                        onChange={formStore.selectGroup.bind(formStore)}
+                                    />
+                                    <FormControlApp
+                                        as={'textarea'}
+                                        label={'Вывод'}
+                                        value={formStore.selectedGroup.getStudentsText()}
+                                        disabled={true}
+                                        rows={10}
+                                    />
+                                </Form>
+                            )}
+                        </Card.Body>
+                    </Card>
+                }
+            />
+            <Code />
+        </>
     )
 })
