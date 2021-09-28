@@ -73,6 +73,7 @@
     display: none;
   }
 
+
   td:before {
     padding-left: 5px;
     width: 50%;
@@ -104,18 +105,73 @@
   }
 }
 
+//
+//.react-bootstrap-table th .order > .dropup > .caret {
+//  margin: 10px 0;
+//  color: #cccccc;
+//}
+//
+//.react-bootstrap-table th .order > .dropdown > .caret {
+//  margin: 10px 0 10px 5px;
+//  color: #cccccc;
+//}
+
 .table-app {
   .react-bs-table-no-data {
     text-align: center;
+  }
+
+  //
+  //.dropup .caret, .navbar-fixed-bottom .dropdown .caret {
+  //  content: "";
+  //  border-top: 0;
+  //  border-bottom: 4px dashed;
+  //  border-bottom: 4px solid\9;
+  //}
+
+  span.order {
+    display: none;
+  }
+
+  th .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid \9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
   }
 
   .expand-cell {
     min-width: 15px !important;
   }
 
+  th.expand-cell-header {
+    > .fa.fa-bars {
+      display: none;
+    }
+  }
+
   td {
+    .errors-absolute {
+      .form-errors {
+        position: absolute;
+        margin-left: -40px;
+        text-align: justify;
+      }
+    }
 
+    &.expand-cell {
+      padding: 0;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
 
+  td {
     .select-custom {
       .form-group {
         margin: 0;
@@ -176,7 +232,19 @@
     @include table-flex;
   }
 }
-
+@media only screen and (max-width: 768px) {
+  .table-app {
+    td {
+      .errors-absolute {
+        .form-errors {
+          position: relative;
+          margin-left: auto;
+          text-align: justify;
+        }
+      }
+    }
+  }
+}
 @media only screen and (min-width: 530px) and (max-width: 768px) {
   @include first-row;
   @include app-container;
@@ -216,14 +284,32 @@
     margin: 0 0 0 15px !important;
   }
 
+
 }
 
 .table-app-columns-header {
-  @extend %table-app-columns
+  @extend %table-app-columns;
+  cursor: pointer !important;
+
+
+  &:hover {
+    background-color: #d9f1ff;
+  }
+
+  &.columns-expander-header{
+    width:30px !important;
+    //position: absolute;
+    div {
+      //margin-left: -70px;
+    }
+
+  }
 }
 
 .table-app-columns-content {
   @extend %table-app-columns;
+
+
 }
 
 .pagination.react-bootstrap-table-page-btns-ul {

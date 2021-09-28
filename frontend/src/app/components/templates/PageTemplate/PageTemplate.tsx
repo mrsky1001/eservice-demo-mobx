@@ -2,13 +2,13 @@
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
 
-import './TemplatePage.scss'
+import './PageTemplate.scss'
 
 import React from 'react'
 import { Col, NavLink, Row } from 'react-bootstrap'
-import pagesStore from '../../lib/store/pages-store'
-import ColApp from '../../../core/components/ColApp/ColApp'
-import routes from '../../lib/routes'
+import pagesStore from '../../../lib/store/pages-store'
+import ColApp from '../../../../core/components/ColApp/ColApp'
+import routes from '../../../lib/routes'
 
 interface ITemplatePage {
     leftLG?: number
@@ -17,7 +17,7 @@ interface ITemplatePage {
     component: React.ReactElement
 }
 
-export const TemplatePage = (props: ITemplatePage): JSX.Element => {
+export const PageTemplate = (props: ITemplatePage): JSX.Element => {
     const leftLG = props.leftLG ? props.leftLG : 3
     const centerLG = props.centerLG ? props.centerLG : 5
 

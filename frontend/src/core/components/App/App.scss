@@ -6,11 +6,15 @@
 .app, .modal {
   font-size: small;
 
+  .icon-action {
+    font-size: large;
+  }
+
   .card {
     margin-top: 20px;
   }
 
-  input, select, button {
+  input, select, button, a.btn {
     font-size: small;
   }
 
@@ -60,6 +64,7 @@
   }
 
   .page-item.active .page-link {
+    z-index: auto;
     color: #fff;
     background-color: #4995b3;
     border-color: #4995b3;

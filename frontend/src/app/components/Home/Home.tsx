@@ -15,7 +15,7 @@ export default observer(() => {
     return (
         <Card className={'home-form'}>
             <Card.Header>
-                Демо-примеры построения компонентов на стеке: TypeScript + ReactJS + MOBX. Версия ядра v2.0.1
+                Демо-примеры построения компонентов на стеке: TypeScript + ReactJS + MOBX. Версия ядра v2.1.0
             </Card.Header>
             <Card.Body>
                 <Row className={'row-body'}>
@@ -43,7 +43,6 @@ export default observer(() => {
                     ))}
                 </Row>
             </Card.Body>
-            <Card.Footer>* - Данный примеры работают с версии ядра v1.1.0</Card.Footer>
         </Card>
     )
 })

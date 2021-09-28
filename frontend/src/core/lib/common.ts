@@ -2,6 +2,8 @@
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
 
+import { OptionSelect } from './models/option-select'
+
 export const joinUrl = (...urls: string[]): string => {
     let res = ''
 
@@ -20,15 +22,19 @@ export const appendStr = (mainStr: string, str: string): string => {
 export const checkAndInsert = (checkValue: string | boolean | number, mainStr: string, str: string): string => {
     return checkValue ? appendStr(mainStr, str) : mainStr
 }
-// export const toSelectOptions = (list, fieldName, label = fieldName, icon) => {
-//     const listLabels = Array.isArray(label) ? label : [label]
-//
-//     let resText = ""
-//     if (this[name] !== undefined) listLabels.forEach(_ => (resText += splitter + this[_]))
-//
-//     return new OptionSelect({ id: this.id, label: resText, value: this[name], icon: icon })
-//
-// }
+
+export const listToOptions = (
+    list: any[],
+    valueField: string,
+    textField = valueField,
+    icon?: string,
+    idField = 'id',
+): OptionSelect[] => {
+    return list.map((obj) => {
+        return new OptionSelect({ id: obj[idField], label: obj[textField], value: obj[valueField], icon: icon })
+    })
+}
+
 // export const makeId  = <T, P>(list: IGlobalStore<T, P>[] | IGlobalStore<T, P>, template: string = "", withReplace = false): void => {
 //     function make() {
 //         let text = template

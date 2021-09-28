@@ -8,13 +8,14 @@ import { Form } from 'react-bootstrap'
 import { IFormControlAppProps, init } from './extensions/form-control-app'
 import validateForm from './extensions/validation-control-app'
 import DatePickerApp from '../DatePickerApp/DatePickerApp'
+import Select from 'react-select'
 
 const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const initState = init(props)
     const [validErrors, setValidErrors] = useState([])
     const [isInvalid, setIsInvalid] = useState(undefined)
 
-    const onBlur = (val) => {
+    const onChange = (val) => {
         const value = val.currentTarget ? val.currentTarget.value : val
 
         const errors = validateForm({
@@ -25,11 +26,13 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
             minValue: initState.minValue,
             maxValue: initState.maxValue,
             pattern: initState.pattern,
+            required: initState.required,
             patternError: initState.patternError,
         })
 
         setValidErrors(errors)
         setIsInvalid(errors.length > 0)
+
         initState.onChange(value)
     }
 
@@ -47,11 +50,35 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     type={initState.type}
                     style={initState.style}
                     required={initState.required}
-                    onChange={onBlur}
+                    onChange={onChange}
                     classes={initState.classesInput}
                     selected={String(initState.value)}
-                    disabled={props.disabled}
+                    minDate={String(initState.minValue)}
+                    maxDate={String(initState.maxValue)}
+                    disabled={initState.disabled}
                     isInvalid={isInvalid}
+                />
+            ) : initState.as === 'select' ? (
+                <Select
+                    id={initState.id}
+                    key={initState.id}
+                    onChange={onChange}
+                    type={initState.type}
+                    isInvalid={isInvalid}
+                    value={initState.value}
+                    style={initState.style}
+                    options={initState.options}
+                    required={initState.required}
+                    disabled={initState.disabled}
+                    defaultValue={initState.value}
+                    autoFocus={initState.autoFocus}
+                    className={initState.classesInput}
+                    placeholder={initState.placeholder}
+                    isMulti={initState.selectProps.isMulti}
+                    isClearable={initState.selectProps.isClearable}
+                    noOptionsMessage={() => initState.emptyMessage}
+                    isValid={isInvalid === undefined ? isInvalid : !isInvalid}
+                    closeMenuOnSelect={initState.selectProps.closeMenuOnSelect}
                 />
             ) : (
                 <Form.Control
@@ -64,15 +91,19 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     rows={initState.rows}
                     required={initState.required}
                     placeholder={initState.placeholder}
-                    onChange={onBlur}
-                    onBlur={onBlur}
+                    onChange={onChange}
+                    onBlur={onChange}
+                    min={initState.minValue}
+                    max={initState.maxValue}
                     classes={initState.classesInput}
                     value={initState.value}
-                    disabled={props.disabled}
+                    disabled={initState.disabled}
                     isInvalid={isInvalid}
                     isValid={isInvalid === undefined ? isInvalid : !isInvalid}
                 />
             )}
+
+            {/* <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>*/}
             <Form.Text className={'form-errors'}>
                 {validErrors.map((error, idx) => (
                     <div key={idx} className={'text-danger'}>

@@ -8,11 +8,10 @@ import React, { useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import Card from 'react-bootstrap/Card'
 import { observer } from 'mobx-react-lite'
-import FormSelectApp from '../../../../core/components/FormSelectApp/FormSelectApp'
 import formStore from '../../../lib/store/pages/select-form-store'
 import groups from '../../../../../test-data/groups'
 import FormControlApp from '../../../../core/components/FormControlApp/FormControlApp'
-import { TemplatePage } from '../../TemplatePage/TemplatePage'
+import { PageTemplate } from '../../templates/PageTemplate/PageTemplate'
 import Code from './extensions/Code'
 
 export default observer(() => {
@@ -22,7 +21,7 @@ export default observer(() => {
 
     return (
         <>
-            <TemplatePage
+            <PageTemplate
                 currentPage={1}
                 component={
                     <Card className={'validation-form justify-content-center'}>
@@ -30,13 +29,20 @@ export default observer(() => {
                         <Card.Body>
                             {formStore.loading ? null : (
                                 <Form>
-                                    <FormSelectApp
+                                    <FormControlApp
+                                        id={'group'}
                                         label={'Выберите группу'}
+                                        as={'select'}
                                         value={formStore.selectedGroup.toSelectOption('name')}
-                                        options={formStore.groups.map((g) => g.toSelectOption('name'))}
+                                        selectProps={{
+                                            valueField: 'name',
+                                            textField: 'name',
+                                            options:  formStore.groups
+                                        }}
                                         onChange={formStore.selectGroup.bind(formStore)}
                                     />
                                     <FormControlApp
+                                        id={'output'}
                                         as={'textarea'}
                                         label={'Вывод'}
                                         value={formStore.selectedGroup.getStudentsText()}

@@ -1,11 +1,12 @@
 /*!
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
+.form-group {
+  margin-top: .5rem;
+}
 
 .form-control-app {
-  label {
-    margin-top: 10px;
-  }
+  text-align: left;
 
   .form-errors {
     margin-top: 0;

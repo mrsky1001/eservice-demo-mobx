@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card'
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/prism-light'
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { Col, Row } from 'react-bootstrap'
-import ColApp from '../../../core/components/ColApp/ColApp'
+import ColApp from '../../../../core/components/ColApp/ColApp'
 
 interface ITemplateCode {
     title: string
@@ -16,7 +16,7 @@ interface ITemplateCode {
     centerLg?: number
 }
 
-const TemplateCode = (props: ITemplateCode): JSX.Element => (
+const CodeTemplate = (props: ITemplateCode): JSX.Element => (
     <Row className={'mt-5'}>
         <Col lg={props.leftLg ? props.leftLg : 2} md={0} />
         <ColApp
@@ -35,4 +35,4 @@ const TemplateCode = (props: ITemplateCode): JSX.Element => (
         />
     </Row>
 )
-export default TemplateCode
+export default CodeTemplate

@@ -3,10 +3,10 @@
  */
 
 import React from 'react'
-import TemplateCode from '../../../TemplateCode/TemplateCode'
+import CodeTemplate from '../../../templates/CodeTemplate/CodeTemplate'
 
 const Code = (): JSX.Element => (
-    <TemplateCode
+    <CodeTemplate
         title={'SimpleForm.tsx'}
         code={`
 <Card className={'simple-form justify-content-center'}>

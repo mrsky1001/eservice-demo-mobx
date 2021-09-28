@@ -12,7 +12,7 @@ import Code from './extensions/Code'
 import { observer } from 'mobx-react-lite'
 import FormControlApp from '../../../../core/components/FormControlApp/FormControlApp'
 import formStore from '../../../lib/store/pages/simple-form-store'
-import { TemplatePage } from '../../TemplatePage/TemplatePage'
+import { PageTemplate } from '../../templates/PageTemplate/PageTemplate'
 
 export default observer(() => {
     const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): React.MouseEvent<HTMLElement> => {
@@ -23,7 +23,7 @@ export default observer(() => {
 
     return (
         <>
-            <TemplatePage
+            <PageTemplate
                 currentPage={0}
                 component={
                     <>
@@ -33,11 +33,13 @@ export default observer(() => {
                                 <Form onSubmit={handleSubmit}>
                                     <Form.Label>{'Введите "Имя пользователя" и посмотрите результат!'}</Form.Label>
                                     <FormControlApp
+                                        id={'username'}
                                         label={'Имя пользователь'}
                                         value={formStore.userName}
                                         onChange={formStore.setUserName.bind(formStore)}
                                     />
                                     <FormControlApp
+                                        id={'output'}
                                         as={'textarea'}
                                         label={'Вывод'}
                                         value={formStore.info}

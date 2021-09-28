@@ -10,12 +10,12 @@ import tableStore from '../../../lib/store/pages/expand-table-store'
 import { TableApp } from '../../../../core/components/TableApp/TableApp'
 import columns from './extensions/columns'
 import { observer } from 'mobx-react-lite'
-import { TemplatePage } from '../../TemplatePage/TemplatePage'
+import { PageTemplate } from '../../templates/PageTemplate/PageTemplate'
 import ExpandRow from './extensions/ExpandRow/ExpandRow'
 
 export default observer(() => {
     return (
-        <TemplatePage
+        <PageTemplate
             currentPage={5}
             leftLG={2}
             centerLG={8}

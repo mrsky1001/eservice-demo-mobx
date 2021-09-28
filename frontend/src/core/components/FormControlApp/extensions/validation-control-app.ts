@@ -13,6 +13,7 @@ interface IValidationFormProps {
     maxValue?: number | string
     pattern?: string
     patternError?: string
+    required?: boolean
 }
 
 export default (props: IValidationFormProps): string[] => {
@@ -27,7 +28,7 @@ export default (props: IValidationFormProps): string[] => {
         emailError: 'Поле не соответствует типу электронной почты!',
     }
 
-    String(props.value).length === 0 && errors.push(templatesErrors.requiredError)
+    props.required && String(props.value).length === 0 && errors.push(templatesErrors.requiredError)
 
     if (controlTypes.EMAIL === props.type) {
         const re =

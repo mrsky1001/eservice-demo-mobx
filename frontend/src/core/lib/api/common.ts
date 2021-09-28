@@ -21,7 +21,7 @@ export const keepalive = (): void => {
         }
 
         const keepaliveCall = async () => {
-            return await axios.get('/backend/auth/probe_auth').then(() => {
+            return await axios.get(coreUrls.PROBE_AUTH).then(() => {
                 resetTimer()
             })
         }
@@ -32,11 +32,11 @@ export const keepalive = (): void => {
     resetTimer()
 }
 
-export const handlerSuccess = (res: AxiosResponse, handler?: (val: any) => any): void => {
+export const handlerSuccess = (res: AxiosResponse, handler?: (val: any) => any, isSuccessMessage = true): void => {
     if (res.data.success) {
         handler && handler(res.data.data)
 
-        if (res.config.method !== 'get') {
+        if (res.config.method !== 'get' && isSuccessMessage) {
             new Toaster({ msg: 'Операция выполнена успешно', type: toast.TYPE.SUCCESS })
         }
     } else {
@@ -57,27 +57,4 @@ export const handlerError = (error: AxiosError): void => {
         } else {
             history.push(coreUrls.DOMAIN)
         }
-
-    //
-    // if (error.response !== undefined)
-    //     if (error.response.status === 401) {
-    //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //         // @ts-ignore
-    //         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    //         console.log(location)
-    //         location.assign(coreUrls.BACKEND)
-    //         history.go()
-    //     } else if (error.response.status === 404) {
-    //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //         // @ts-ignore
-    //         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    //         history.push(coreUrls.DOMAIN)
-    //     } else {
-    //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //         // @ts-ignore
-    //         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    //         history.push(coreUrls.DOMAIN)
-    //     }
-
-    // throw new Error(error)
 }

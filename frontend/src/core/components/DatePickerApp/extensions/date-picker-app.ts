@@ -43,7 +43,7 @@ export const init = (props: IDatePickerProps): IDatePickerProps => {
 
     classes += ' datepicker-custom'
     classesLabel += ' datepicker-label'
-    classesGroup += ' datepicker-group'
+    classesGroup += ' datepicker-group form-group-app'
     classesDivDatepicker += ' datepicker-div'
     classesDatepicker += ' datepicker-input form-control'
 
@@ -51,7 +51,7 @@ export const init = (props: IDatePickerProps): IDatePickerProps => {
         classes += ' left-div'
         classesDivDatepicker += ' col-sm-10 left-datepicker-div'
         classesLabel += ' col-sm-2 left-label'
-        classesGroup += ' form-group row left-group'
+        classesGroup += ' row left-group'
     }
 
     const handlerChange = (val) => {

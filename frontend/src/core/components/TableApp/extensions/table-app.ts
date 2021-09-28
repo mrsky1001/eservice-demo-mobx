@@ -7,10 +7,13 @@ import BootstrapTable, {
     ExpandRowProps,
     SelectRowProps,
     SortOrder,
+    TableChangeHandler,
 } from 'react-bootstrap-table-next'
 import React from 'react'
 import { checkAndInsert } from '../../../lib/common'
-
+import { dateFilter, FilterFactoryProps, textFilter } from 'react-bootstrap-table2-filter'
+import filterFactory from 'react-bootstrap-table2-filter'
+import PaginationProps from '../../../lib/models/pagination-props'
 interface IAttrs {
     'data-label'?: string
 }
@@ -28,26 +31,39 @@ export interface ITableAppProps {
 
     hover?: boolean
     striped?: boolean
-    loading?: boolean
     condensed?: boolean
-    isSearched?: boolean
-    isSizerPage?: boolean
-    isPagination?: boolean
+    hasSearch?: boolean
+    hasFilter?: boolean
+    hasPagination?: boolean
     isFlexibleIPad?: boolean
     isFirstRowBold?: boolean
-    isColumnsHeader?: boolean
     isFlexibleIPhone?: boolean
+    hasColumnsHeader?: boolean
 
     classes?: string
+    paginationProps?: PaginationProps
+    filter?: FilterFactoryProps
     headerClasses?: string
     selectRow?: SelectRowProps<any>
     expandRow?: ExpandRowProps<any, number>
     cellEdit?: any
-    defaultSorted?: [{ dataField: any; order: SortOrder }]
+    defaultSorted?: [{ dataField: string; order: SortOrder }]
     tableRef?: React.LegacyRef<BootstrapTable<any, number>>
     rowClasses?: string
     noDataIndication?: string | JSX.Element | (() => string | JSX.Element)
     rowStyle?: React.CSSProperties | ((row: any, rowIndex: number) => React.CSSProperties)
+    sort?: {
+        dataField?: any
+        order: SortOrder
+        sortFunc?: any
+        sortCaret?: any
+    }
+    defaultSortDirection?: SortOrder | undefined
+    overlay?: any
+    onTableChange?: any
+    onSort?: any
+    onFilter?: any
+    onExternalFilter?: any
 }
 
 export const init = (props: ITableAppProps): ITableAppProps => {
@@ -57,14 +73,53 @@ export const init = (props: ITableAppProps): ITableAppProps => {
         striped: false,
         loading: false,
         condensed: false,
-        isSearched: true,
-        isSizerPage: true,
-        isPagination: true,
+        hasSearch: true,
+        hasFilter: false,
+        hasPagination: true,
         isFlexibleIPad: true,
         isFirstRowBold: false,
-        isColumnsHeader: true,
+        hasColumnsHeader: true,
         isFlexibleIPhone: true,
+        paginationProps: new PaginationProps({
+            sizePerPageList: [
+                {
+                    text: '5',
+                    value: 5,
+                },
+                {
+                    text: '10',
+                    value: 10,
+                },
+                {
+                    text: '15',
+                    value: 15,
+                },
+                {
+                    text: '20',
+                    value: 20,
+                },
+                {
+                    text: '30',
+                    value: 30,
+                },
+                {
+                    text: '40',
+                    value: 40,
+                },
+                {
+                    text: '50',
+                    value: 50,
+                },
+                { text: 'Все', value: props.data.length },
+            ],
+        }),
         noDataIndication: 'Нет данных',
+        defaultSorted: [
+            {
+                dataField: '',
+                order: 'desc',
+            },
+        ],
     }
 
     const replacedProps = Object.assign(emptyState, props)
@@ -74,7 +129,7 @@ export const init = (props: ITableAppProps): ITableAppProps => {
     classes = checkAndInsert(replacedProps.isFlexibleIPad, classes, ' table-flex-ipad')
     classes = checkAndInsert(replacedProps.isFlexibleIPhone, classes, ' table-flex-iphone')
 
-    if (replacedProps.isColumnsHeader) {
+    if (replacedProps.hasColumnsHeader) {
         classes = checkAndInsert(replacedProps.isFlexibleIPhone, classes, ' columns-header-iphone')
         classes = checkAndInsert(replacedProps.isFlexibleIPad, classes, ' columns-header-ipad')
     }
@@ -86,12 +141,17 @@ export const init = (props: ITableAppProps): ITableAppProps => {
         column.classes = 'table-app-columns-content'
         column.headerClasses = 'table-app-columns-header'
         column.attrs = { 'data-label': column.text }
+        column.sort = true
+        // column.filter = textFilter()
     })
 
-    return Object.assign(emptyState, replacedProps, {
-        classes: classes,
-        columns: columns,
+    const filter = replacedProps.hasFilter ? filterFactory() : undefined
+    const rowClasses = checkAndInsert(replacedProps.isFirstRowBold, replacedProps.rowClasses, ' first-bold')
 
-        rowClasses: checkAndInsert(replacedProps.isFirstRowBold, replacedProps.rowClasses, ' first-bold'),
+    return Object.assign(emptyState, replacedProps, {
+        classes,
+        columns,
+        filter,
+        rowClasses,
     })
 }

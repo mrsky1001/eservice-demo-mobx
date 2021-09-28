@@ -11,7 +11,7 @@ import Card from 'react-bootstrap/Card'
 import { observer } from 'mobx-react-lite'
 import FormControlApp from '../../../../core/components/FormControlApp/FormControlApp'
 import formStore from '../../../lib/store/pages/validation-form-store'
-import { TemplatePage } from '../../TemplatePage/TemplatePage'
+import { PageTemplate } from '../../templates/PageTemplate/PageTemplate'
 
 export default observer(() => {
     const handleSubmit = (e: React.MouseEvent<HTMLFormElement>): void => {
@@ -38,7 +38,7 @@ export default observer(() => {
     }
 
     return (
-        <TemplatePage
+        <PageTemplate
             currentPage={2}
             component={
                 <Card className={'validation-form justify-content-center'}>
