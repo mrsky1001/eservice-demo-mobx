@@ -3,7 +3,7 @@
  */
 
 import './FormControlApp.scss'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { IFormControlAppProps, init } from './extensions/form-control-app'
 import validateForm from './extensions/validation-control-app'
@@ -15,13 +15,11 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const [validErrors, setValidErrors] = useState([])
     const [isInvalid, setIsInvalid] = useState(undefined)
 
-    const onChange = (val) => {
-        let value = val && val.currentTarget ? val.currentTarget.value : val
+    useEffect(() => {
+        validate(props.value)
+    }, [props.value])
 
-        if (initState.type === 'number') {
-            value = Number(value)
-        }
-
+    const validate = (value) => {
         const propsValidate = {
             value: value,
             type: initState.type,
@@ -37,14 +35,21 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
 
         const errors = validateForm(propsValidate)
 
-        if (props.as !== 'select') {
-            setValidErrors(errors)
-            setIsInvalid(errors.length > 0 ? false : undefined)
+        setValidErrors(errors)
+        setIsInvalid(errors.length > 0 ? false : undefined)
+    }
+    const onChange = (val) => {
+        let value = val && val.currentTarget ? val.currentTarget.value : val
+
+        if (initState.type === 'number') {
+            value = Number(value)
         }
 
-        initState.onChange(propsValidate.value)
+        validate(value)
+        initState.onChange(value)
     }
 
+    // console.log(validErrors)
     return (
         <div className={initState.classes}>
             {initState.label ? (
@@ -75,7 +80,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     key={initState.id}
                     onChange={onChange}
                     type={initState.type}
-                    // isInvalid={isInvalid}
+                    isInvalid={isInvalid}
                     value={initState.value}
                     style={initState.style}
                     required={initState.required}
@@ -114,7 +119,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                 />
             )}
 
-            {/* <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>*/}
+            <Form.Control.Feedback type="invalid">Please provide a valid state.</Form.Control.Feedback>
             <Form.Text className={'form-errors'}>
                 {validErrors.map((error, idx) => (
                     <div key={idx} className={'text-danger'}>
