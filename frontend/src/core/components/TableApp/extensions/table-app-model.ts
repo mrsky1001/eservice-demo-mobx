@@ -10,20 +10,20 @@ import BootstrapTable, {
 } from 'react-bootstrap-table-next'
 import React, { Dispatch } from 'react'
 import { checkAndInsert, listToOptions } from '../../../lib/common'
-import { FilterFactoryProps } from 'react-bootstrap-table2-filter'
-import filterFactory from 'react-bootstrap-table2-filter'
+import filterFactory, { FilterFactoryProps } from 'react-bootstrap-table2-filter'
 import PaginationProps from '../../../lib/models/pagination-props'
 import { columnsExpander } from './columns-expander'
 import { nanoid } from 'nanoid'
 import { getProp, setProp } from '../../../lib/local-storage/service-storage'
 import { OptionSelect } from '../../../lib/models/option-select'
+
 interface IAttrs {
     'data-label'?: string
 }
 
 export interface IColumnDescription extends ColumnDescription {
     id?: string
-    isCanRemoved?: boolean
+    isLocked?: boolean
     title?: boolean
     headerTitle?: boolean
     isColumnsExpander?: boolean
@@ -39,6 +39,7 @@ export interface ITableAppProps {
     striped?: boolean
     condensed?: boolean
     hasSearch?: boolean
+    loading?: boolean
     hasFilter?: boolean
     hasPagination?: boolean
     isFlexibleIPad?: boolean
@@ -125,7 +126,7 @@ class TableAppModel implements ITableApp {
 
         if (this.props.hasColumnsExpander) {
             if (!this.hasColumnsExpander()) {
-                this.props.columns.push(this.genExpanderColumns(this.props.columns))
+                this.props.columns.push(this.genExpanderColumns(this.props.columns.filter((c) => !c.isLocked)))
             }
 
             if (!this.options)
@@ -157,15 +158,16 @@ class TableAppModel implements ITableApp {
         this.props.columns.forEach((c) => {
             const obj = selectedOptions.find((o) => o.label === c.text)
             obj && (c.hidden = false)
-            !obj && !c.isColumnsExpander && (c.hidden = true)
+            !obj && !c.isColumnsExpander && !c.isLocked && (c.hidden = true)
         })
 
-        setProp(
-            `${this.props.id}_selectedColumns`,
-            this.props.columns.filter((c) => !c.hidden),
-        )
+        const propName = `${this.props.id}_selectedColumns`
+        const propVal = this.props.columns.filter((c) => !c.hidden)
 
-        this.setSelectedColumns([...this.props.columns.filter((c) => !c.hidden)])
+        setProp(propName, propVal)
+
+        // @ts-ignore
+        this.setSelectedColumns([...propVal])
     }
 
     getFilter(): unknown {
@@ -177,7 +179,11 @@ class TableAppModel implements ITableApp {
     }
 
     genExpanderColumns(selectedColumns: IColumnDescription[]): IColumnDescription {
-        return columnsExpander(selectedColumns, this.handleChangeSelectedColumns.bind(this), this.props.columns)
+        return columnsExpander(
+            selectedColumns,
+            this.handleChangeSelectedColumns.bind(this),
+            this.props.columns.filter((c) => !c.isLocked),
+        )
     }
 
     resetColumns = (selectedColumns: IColumnDescription[]): void => {

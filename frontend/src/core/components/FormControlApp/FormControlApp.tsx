@@ -16,9 +16,13 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
     const [isInvalid, setIsInvalid] = useState(undefined)
 
     const onChange = (val) => {
-        const value = val.currentTarget ? val.currentTarget.value : val
+        let value = val && val.currentTarget ? val.currentTarget.value : val
 
-        const errors = validateForm({
+        if (initState.type === 'number') {
+            value = Number(value)
+        }
+
+        const propsValidate = {
             value: value,
             type: initState.type,
             minLength: initState.minLength,
@@ -28,12 +32,17 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
             pattern: initState.pattern,
             required: initState.required,
             patternError: initState.patternError,
-        })
+            isHardMinMaxValue: initState.isHardMinMaxValue,
+        }
 
-        setValidErrors(errors)
-        setIsInvalid(errors.length > 0)
+        const errors = validateForm(propsValidate)
 
-        initState.onChange(value)
+        if (props.as !== 'select') {
+            setValidErrors(errors)
+            setIsInvalid(errors.length > 0 ? false : undefined)
+        }
+
+        initState.onChange(propsValidate.value)
     }
 
     return (
@@ -51,6 +60,8 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     style={initState.style}
                     required={initState.required}
                     onChange={onChange}
+                    useWeekdaysShort={initState.useWeekdaysShort}
+                    dateFormat={initState.dateFormat}
                     classes={initState.classesInput}
                     selected={String(initState.value)}
                     minDate={String(initState.minValue)}
@@ -64,20 +75,20 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     key={initState.id}
                     onChange={onChange}
                     type={initState.type}
-                    isInvalid={isInvalid}
+                    // isInvalid={isInvalid}
                     value={initState.value}
                     style={initState.style}
-                    options={initState.options}
                     required={initState.required}
                     disabled={initState.disabled}
                     defaultValue={initState.value}
                     autoFocus={initState.autoFocus}
                     className={initState.classesInput}
                     placeholder={initState.placeholder}
+                    options={initState.selectProps.options}
                     isMulti={initState.selectProps.isMulti}
                     isClearable={initState.selectProps.isClearable}
                     noOptionsMessage={() => initState.emptyMessage}
-                    isValid={isInvalid === undefined ? isInvalid : !isInvalid}
+                    // isValid={isInvalid === undefined ? isInvalid : !isInvalid}
                     closeMenuOnSelect={initState.selectProps.closeMenuOnSelect}
                 />
             ) : (
@@ -99,7 +110,7 @@ const FormControlApp = (props: IFormControlAppProps): JSX.Element => {
                     value={initState.value}
                     disabled={initState.disabled}
                     isInvalid={isInvalid}
-                    isValid={isInvalid === undefined ? isInvalid : !isInvalid}
+                    // isValid={isInvalid === undefined ? isInvalid : !isInvalid}
                 />
             )}
 

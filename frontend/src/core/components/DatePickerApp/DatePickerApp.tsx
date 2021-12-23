@@ -20,7 +20,7 @@ const DatePickerApp = (props: IDatePickerProps): JSX.Element => {
                 placeholderText={initState.placeholderText}
                 selected={initState.dateInFormat(initState.selected)}
                 onChange={initState.onChange}
-                useWeekdaysShort={initState.useWeekdaysShort}
+                useWeekdaysShort={true}
                 formatWeekDay={initState.formatWeekDay}
                 dateFormat={initState.dateFormat}
                 className={initState.classesDatepicker}

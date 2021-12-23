@@ -7,13 +7,12 @@ import BootstrapTable, {
     ExpandRowProps,
     SelectRowProps,
     SortOrder,
-    TableChangeHandler,
 } from 'react-bootstrap-table-next'
 import React from 'react'
 import { checkAndInsert } from '../../../lib/common'
-import { dateFilter, FilterFactoryProps, textFilter } from 'react-bootstrap-table2-filter'
-import filterFactory from 'react-bootstrap-table2-filter'
+import filterFactory, { FilterFactoryProps } from 'react-bootstrap-table2-filter'
 import PaginationProps from '../../../lib/models/pagination-props'
+
 interface IAttrs {
     'data-label'?: string
 }

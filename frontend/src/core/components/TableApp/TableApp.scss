@@ -2,6 +2,10 @@
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
 
+tbody {
+  border-top: 1px solid #e3e3e3 !important;
+}
+
 @mixin app-container {
   .app > .container {
     max-width: 100%;
@@ -140,7 +144,8 @@
     margin-left: 2px;
     vertical-align: middle;
     border-top: 4px dashed;
-    border-top: 4px solid \9;
+    border-top: 4px solid \9
+  ;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
   }
@@ -232,6 +237,7 @@
     @include table-flex;
   }
 }
+
 @media only screen and (max-width: 768px) {
   .table-app {
     td {
@@ -245,6 +251,7 @@
     }
   }
 }
+
 @media only screen and (min-width: 530px) and (max-width: 768px) {
   @include first-row;
   @include app-container;
@@ -296,8 +303,8 @@
     background-color: #d9f1ff;
   }
 
-  &.columns-expander-header{
-    width:30px !important;
+  &.columns-expander-header {
+    width: 30px !important;
     //position: absolute;
     div {
       //margin-left: -70px;

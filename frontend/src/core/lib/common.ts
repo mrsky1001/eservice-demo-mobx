@@ -26,13 +26,23 @@ export const checkAndInsert = (checkValue: string | boolean | number, mainStr: s
 export const listToOptions = (
     list: any[],
     valueField: string,
-    textField = valueField,
+    textField: string | string[] = valueField,
     icon?: string,
     idField = 'id',
 ): OptionSelect[] => {
-    return list.map((obj) => {
-        return new OptionSelect({ id: obj[idField], label: obj[textField], value: obj[valueField], icon: icon })
-    })
+    const getLabel = (elem) => {
+        return Array.isArray(textField) ? textField.map((f) => elem[f]).join(' / ') : elem[textField]
+    }
+
+    if (typeof list[0] === 'object') {
+        return list.map((obj) => {
+            return new OptionSelect({ id: obj[idField], label: getLabel(obj), value: obj[valueField], icon: icon })
+        })
+    } else {
+        return list.map((elem) => {
+            return new OptionSelect({ id: elem, label: elem, value: elem })
+        })
+    }
 }
 
 // export const makeId  = <T, P>(list: IGlobalStore<T, P>[] | IGlobalStore<T, P>, template: string = "", withReplace = false): void => {

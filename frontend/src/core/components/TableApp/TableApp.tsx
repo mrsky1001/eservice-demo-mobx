@@ -17,21 +17,9 @@ import { getProp } from '../../lib/local-storage/service-storage'
 export const TableApp = (props: ITableAppProps): JSX.Element => {
     const [selectedColumns, setSelectedColumns] = useState([])
     const initState = new TableAppModel().init(props, selectedColumns, setSelectedColumns)
-    const [optionsPaginationFactory, setPagination] = useState()
     const paginationProps = new PaginationProps(Object.assign(initState.paginationProps, { tableName: props.id }))
 
     paginationProps.load()
-
-    const handleChangePaginationProps = () => {
-        const source = {
-            data: initState.data,
-            columns: initState.columns.filter((c) => !c.hidden),
-            totalSize: initState.data.length,
-        }
-
-        // @ts-ignore
-        setPagination(Object.assign(paginationProps, source))
-    }
 
     useEffect(() => {
         if (initState.hasColumnsExpander) {
@@ -42,7 +30,7 @@ export const TableApp = (props: ITableAppProps): JSX.Element => {
     }, [])
 
     useEffect(() => {
-        handleChangePaginationProps()
+        // handleChangePaginationProps()
     }, [selectedColumns, props.data])
 
     const contentTable = (props) => {
@@ -80,6 +68,7 @@ export const TableApp = (props: ITableAppProps): JSX.Element => {
                                 defaultSorted={initState.defaultSorted}
                                 sort={initState.sort}
                                 defaultSortDirection={initState.defaultSortDirection}
+                                loading={initState.loading}
                                 overlay={initState.overlay}
                                 onTableChange={initState.onTableChange}
                                 onSort={initState.onSort}
@@ -98,9 +87,7 @@ export const TableApp = (props: ITableAppProps): JSX.Element => {
 
     return (
         <div className={'table-app'}>
-            <PaginationProvider pagination={paginationFactory(optionsPaginationFactory)}>
-                {contentTable}
-            </PaginationProvider>
+            <PaginationProvider pagination={paginationFactory(paginationProps)}>{contentTable}</PaginationProvider>
         </div>
     )
 }

@@ -3,6 +3,7 @@
  */
 
 import { getProp, setProp } from './service-storage'
+
 const parseName = (...strings: string[]): string => {
     return strings.join('_')
 }

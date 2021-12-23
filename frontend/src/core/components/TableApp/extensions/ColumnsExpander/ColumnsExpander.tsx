@@ -3,7 +3,7 @@
  */
 import './ColumnsExpander.scss'
 import FormControlApp from '../../../FormControlApp/FormControlApp'
-import React, { Dispatch, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { fieldsToOptions, IColumnDescription } from '../table-app-model'
 
 interface IColumnsExpanderProps {
@@ -16,10 +16,6 @@ const ColumnsExpander = (props: IColumnsExpanderProps): JSX.Element => {
     const [show, setShow] = useState(false)
 
     const genCols = () => {
-        console.log(
-            'genCols',
-            props.selectedColumns.filter((c) => !c.hidden),
-        )
         return props.selectedColumns.filter((c) => !c.hidden)
     }
 

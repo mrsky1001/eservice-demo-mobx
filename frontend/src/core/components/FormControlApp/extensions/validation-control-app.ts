@@ -14,6 +14,7 @@ interface IValidationFormProps {
     pattern?: string
     patternError?: string
     required?: boolean
+    isHardMinMaxValue?: boolean
 }
 
 export default (props: IValidationFormProps): string[] => {
@@ -45,8 +46,16 @@ export default (props: IValidationFormProps): string[] => {
     if ('text number password'.includes(props.type)) {
         props.minLength && String(props.value).length < props.minLength && errors.push(templatesErrors.minLengthError)
         props.maxLength && String(props.value).length > props.maxLength && errors.push(templatesErrors.maxLengthError)
-        props.minValue && props.value < props.minValue && errors.push(templatesErrors.minValueError)
-        props.maxValue && props.value > props.maxValue && errors.push(templatesErrors.maxValueError)
+
+        if (typeof props.minValue === 'number' && props.value < props.minValue) {
+            errors.push(templatesErrors.minValueError)
+            props.isHardMinMaxValue && (props.value = props.minValue)
+        }
+
+        if (typeof props.maxValue === 'number' && props.value > props.maxValue) {
+            errors.push(templatesErrors.maxValueError)
+            props.isHardMinMaxValue && (props.value = props.maxValue)
+        }
     }
 
     if (props.pattern && String(props.value).length > 0) {

@@ -17,25 +17,40 @@ const fade = cssTransition({
     exit: 'animate__fadeOutUp',
 })
 
+const msgs = []
+
 interface IToaster {
     toastId?: ToastId
     msg: string
     type: TypeOptions
+    isNotShow?: boolean
 }
 
 class Toaster implements IToaster {
     msg = ''
     toastId = null
+    isNotShow = false
     type: TypeOptions = toast.TYPE.INFO
 
     constructor(obj: IToaster) {
         this.msg = obj.msg
         this.type = obj.type
-        this.notify(obj.msg, obj.type)
+
+        !obj.isNotShow && this.notify(obj.msg, obj.type)
     }
 
-    notify(msg: string, type?: TypeOptions): void {
+    notify(msg: string = this.msg, type: TypeOptions = this.type): void {
         this.toastId = toast(msg, { type: type, autoClose: 10000, transition: fade })
+
+        if (msgs.length > 2) {
+            msgs.forEach((id) => {
+                toast.dismiss(id)
+            })
+
+            msgs.splice(0, msgs.length)
+        }
+
+        msgs.push(this.toastId)
     }
 
     update(msg = this.msg, type = this.type): void {

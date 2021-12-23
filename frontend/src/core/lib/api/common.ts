@@ -13,7 +13,7 @@ export const isAuthorized = async (): Promise<boolean> => {
 }
 
 export const keepalive = (): void => {
-    let timer: number
+    let timer: NodeJS.Timeout
 
     const resetTimer = () => {
         if (timer !== undefined) {
@@ -33,14 +33,15 @@ export const keepalive = (): void => {
 }
 
 export const handlerSuccess = (res: AxiosResponse, handler?: (val: any) => any, isSuccessMessage = true): void => {
-    if (res.data.success) {
+    if (res.data.success || res.data.status === 'SUCCESS') {
         handler && handler(res.data.data)
 
         if (res.config.method !== 'get' && isSuccessMessage) {
             new Toaster({ msg: 'Операция выполнена успешно', type: toast.TYPE.SUCCESS })
         }
     } else {
-        throw new Error(res.data.message)
+        const msg = res.data.message ? res.data.message : res.data.msg
+        throw new Error(msg)
     }
 }
 

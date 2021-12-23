@@ -4,7 +4,6 @@
 
 import { CSSProperties, ElementType } from 'react'
 import { appendStr, listToOptions } from '../../../lib/common'
-import { OptionSelect } from '../../../lib/models/option-select'
 
 export interface IFormControlAppProps {
     id?: string
@@ -24,14 +23,18 @@ export interface IFormControlAppProps {
     classesLabel?: string
     emptyMessage?: string
     classesInput?: string
+    dateFormat?: string
+    useWeekdaysShort?: boolean
     validErrors?: string[]
+    isHardMinMaxValue?: boolean
     value: any
     selectProps?: {
         options: any[]
+        idFiled?: string
         keyField?: string
-        valueField: string
+        valueField?: string
         idField?: string
-        textField?: string
+        textField?: string | string[]
         icon?: string
         isMulti?: boolean
         isClearable?: boolean
@@ -49,7 +52,7 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
     let value = props.value
 
     if (props.as === 'select') {
-        props.selectProps.idField = props.selectProps.idField ? props.selectProps.idField : 'id'
+        props.selectProps.idFiled = props.selectProps.idFiled ? props.selectProps.idFiled : 'id'
         props.selectProps.keyField = props.selectProps.keyField ? props.selectProps.keyField : 'id'
         props.selectProps.textField = props.selectProps.textField
             ? props.selectProps.textField
@@ -77,14 +80,25 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
                 props.selectProps.idField,
             )
         } else {
-            value = options.find((o) => o.value === value)
+            if (value && typeof value === 'object') {
+                value = options.find((o) => o.value === value[props.selectProps.valueField])
+            } else {
+                value = options.find((o) => o.value === value)
+            }
         }
     }
+
+    if (props.type === 'number' && props.minValue && props.maxValue) {
+        value = Number(value)
+        props.minValue = Number(props.minValue)
+        props.maxValue = Number(props.maxValue)
+    }
+
+    const selectedProps = props.selectProps ? Object.assign(props.selectProps, { options }) : undefined
 
     const emptyState = {
         as: 'input',
         type: 'text',
-        options: options,
         emptyMessage: 'Нет данных',
         placeholder: props.as === 'select' ? 'Выбрать...' : '',
         onChange: () => {
@@ -94,6 +108,7 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
 
     return Object.assign(emptyState, props, {
         value,
+        selectProps: selectedProps,
         classes: appendStr(props.classes, ' form-control-app'),
     })
 }
