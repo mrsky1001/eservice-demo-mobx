@@ -7,7 +7,7 @@ import * as React from 'react'
 import { useEffect } from 'react'
 import { Nav, Navbar } from 'react-bootstrap'
 import { observer } from 'mobx-react-lite'
-import headerStore from '../../lib/store/header-app'
+import headerStore from '../../lib/store/header-app.store'
 import './HeaderApp.scss'
 import coreUrls from '../../lib/core-urls'
 import { handlerError } from '../../lib/api/common'
@@ -21,7 +21,7 @@ const HeaderApp = observer(() => {
         <div className={'header-app'}>
             <Navbar expand={'sm'}>
                 <Navbar.Brand className={'title'} href={coreUrls.DOMAIN}>
-                    {headerStore.title}
+                    {headerStore.title} {headerStore.username}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls={'basic-navbar-nav'} />
                 <Navbar.Collapse className={'justify-content-end'} id={'basic-navbar-nav'}>

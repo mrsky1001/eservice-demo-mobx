@@ -58,12 +58,13 @@ export const init = (props: IDatePickerProps): IDatePickerProps => {
         props.onChange(props.dateOutFormat ? props.dateOutFormat(val) : toDateBackend(val))
     }
 
+    const dateFormat = props.dateFormat ? props.dateFormat : formatDateToPicker
+
     const emptyState = {
         id: '',
         placeholderText: props.label,
         type: 'date',
         locale: 'ru',
-        dateFormat: formatDateToPicker,
         dateOutFormat: toDateBackend,
         dateInFormat: toDatePicker,
 
@@ -79,5 +80,6 @@ export const init = (props: IDatePickerProps): IDatePickerProps => {
         classesDivDatepicker: classesDivDatepicker,
         classesLabel: classesLabel,
         classesGroup: classesGroup,
+        dateFormat: dateFormat,
     })
 }

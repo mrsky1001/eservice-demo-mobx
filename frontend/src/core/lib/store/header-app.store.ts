@@ -11,6 +11,7 @@ class HeaderAppStore {
     isAuthorized = false
     title: string = settingsService.title
     legend: Array<string> = []
+    username = ''
 
     constructor() {
         makeAutoObservable(this)
@@ -22,6 +23,10 @@ class HeaderAppStore {
         runInAction(() => {
             this.isAuthorized = res
         })
+    }
+
+    setUsername(val: string) {
+        this.username = val
     }
 
     setLegend(val: string[]) {

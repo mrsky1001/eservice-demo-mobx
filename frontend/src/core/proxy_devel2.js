@@ -10,8 +10,8 @@ const ParcelProxyServer = require("parcel-proxy-server")
 // var exec = require('child_process').exec
 
 let COOKIE = undefined
-const HOST = settingsService.host.includes("http") ? settingsService.host : "http://" + settingsService.host
-const URL = settingsService.domainUrl + "/backend/"
+const HOST = settingsService.host
+const URL = settingsService.backendUrl
 const entryPoint = "./src/app/index.html"
 
 if (process.argv.length > 2) {
@@ -34,7 +34,7 @@ const server = new ParcelProxyServer({
     entryPoint: entryPoint,
     proxies: {
         [URL]: {
-            target: HOST,
+            target:"http://"+ HOST,
             onProxyReq: onSetCookies,
             headers: {Host: HOST},
         },

@@ -6,13 +6,15 @@ import { makeAutoObservable } from 'mobx'
 
 class AppStore {
     loading = false
+    countEvent = 0
 
     constructor() {
         makeAutoObservable(this)
     }
 
     setLoading(val: boolean) {
-        this.loading = val
+        this.countEvent += val ? 1 : -1
+        this.loading = this.countEvent > 0
     }
 }
 
