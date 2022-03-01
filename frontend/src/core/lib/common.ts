@@ -26,17 +26,13 @@ export const checkAndInsert = (checkValue: string | boolean | number, mainStr: s
 export const listToOptions = (
     list: any[],
     valueField: string,
-    textField: string | string[] = valueField,
+    textField = valueField,
     icon?: string,
     idField = 'id',
 ): OptionSelect[] => {
-    const getLabel = (elem) => {
-        return Array.isArray(textField) ? textField.map((f) => elem[f]).join(' / ') : elem[textField]
-    }
-
     if (typeof list[0] === 'object') {
         return list.map((obj) => {
-            return new OptionSelect({ id: obj[idField], label: getLabel(obj), value: obj[valueField], icon: icon })
+            return new OptionSelect({ id: obj[idField], label: obj[textField], value: obj[valueField], icon: icon })
         })
     } else {
         return list.map((elem) => {

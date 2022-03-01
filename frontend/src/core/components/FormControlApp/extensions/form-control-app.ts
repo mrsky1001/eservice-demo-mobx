@@ -34,7 +34,7 @@ export interface IFormControlAppProps {
         keyField?: string
         valueField?: string
         idField?: string
-        textField?: string | string[]
+        textField?: string
         icon?: string
         isMulti?: boolean
         isClearable?: boolean
@@ -80,11 +80,7 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
                 props.selectProps.idField,
             )
         } else {
-            if (value && typeof value === 'object') {
-                value = options.find((o) => o.value === value[props.selectProps.valueField])
-            } else {
-                value = options.find((o) => o.value === value)
-            }
+            value = options.find((o) => o.value === value)
         }
     }
 

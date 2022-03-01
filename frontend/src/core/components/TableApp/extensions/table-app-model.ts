@@ -166,7 +166,6 @@ class TableAppModel implements ITableApp {
 
         setProp(propName, propVal)
 
-        // @ts-ignore
         this.setSelectedColumns([...propVal])
     }
 

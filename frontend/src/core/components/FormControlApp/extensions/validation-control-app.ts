@@ -29,8 +29,7 @@ export default (props: IValidationFormProps): string[] => {
         emailError: 'Поле не соответствует типу электронной почты!',
     }
 
-    console.log(props.value)
-    props.required && (String(props.value).length === 0 || !props.value) && errors.push(templatesErrors.requiredError)
+    props.required && String(props.value).length === 0 && errors.push(templatesErrors.requiredError)
 
     if (controlTypes.EMAIL === props.type) {
         const re =

@@ -28,6 +28,7 @@ export const App = observer((): JSX.Element => {
                 <Router />
             </Container>
             <ToastContainer {...optionsToaster} />
+            <LoaderOverlay loading={appStore.loading} />
         </div>
     )
 })
