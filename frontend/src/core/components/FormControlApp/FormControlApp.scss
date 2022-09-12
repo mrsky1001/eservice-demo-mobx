@@ -8,6 +8,22 @@
 .form-control-app {
   text-align: left;
 
+  .range-group-labels {
+    display: flex;
+    justify-content: space-between;
+
+    .range-label {
+      white-space: nowrap; /* Отменяем перенос текста */
+      overflow: hidden; /* Обрезаем содержимое */
+      text-overflow: ellipsis; /* Многоточие */
+
+    }
+  }
+
+  .active-range{
+    color: #007BFF;
+  }
+
   .form-errors {
     margin-top: 0;
 

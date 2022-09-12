@@ -2,8 +2,21 @@
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
 
-import { CSSProperties, ElementType } from 'react'
+import React, { CSSProperties, ElementType } from 'react'
 import { appendStr, listToOptions } from '../../../lib/common'
+
+export interface ISelectProps {
+    options: any[]
+    keyField?: string
+    valueField?: string
+    idField?: string
+    textField?: string
+    isLoading?: boolean
+    iconField?: string
+    isMulti?: boolean
+    isClearable?: boolean
+    closeMenuOnSelect?: boolean
+}
 
 export interface IFormControlAppProps {
     id?: string
@@ -25,26 +38,37 @@ export interface IFormControlAppProps {
     classesInput?: string
     dateFormat?: string
     useWeekdaysShort?: boolean
-    validErrors?: string[]
     isHardMinMaxValue?: boolean
     value: any
-    selectProps?: {
+    regex?:string
+
+    selectProps?: ISelectProps,
+    rangeProps?: {
         options: any[]
-        idFiled?: string
         keyField?: string
         valueField?: string
-        idField?: string
         textField?: string
-        icon?: string
-        isMulti?: boolean
-        isClearable?: boolean
-        closeMenuOnSelect?: boolean
+        size?: "sm" | "lg"
+        min?: number
+        max?: number
+        step?: number
+        variant?: "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "dark" | "light"
+        inputProps?: Partial<React.InputHTMLAttributes<HTMLInputElement>>
+        tooltip?: "auto" | "on" | "off"
+        isActiveColor?: boolean
+        tooltipPlacement?: "top" | "bottom"
+        tooltipLabel?: (value: number) => string
+        tooltipStyle?: React.CSSProperties
+        tooltipProps?: Partial<React.HTMLAttributes<HTMLDivElement>>
+        bsPrefix?: string
     }
     classes?: string
     isValid?: boolean
     disabled?: boolean
     required?: boolean
+    onChangeErrors?: (val: string[]) => void
     onChange?: (val: any) => void
+    onAfterChange?: (val: any) => void
 }
 
 export const init = (props: IFormControlAppProps): IFormControlAppProps => {
@@ -52,8 +76,9 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
     let value = props.value
 
     if (props.as === 'select') {
-        props.selectProps.idFiled = props.selectProps.idFiled ? props.selectProps.idFiled : 'id'
+        props.selectProps.idField = props.selectProps.idField ? props.selectProps.idField : 'id'
         props.selectProps.keyField = props.selectProps.keyField ? props.selectProps.keyField : 'id'
+        props.selectProps.valueField = props.selectProps.valueField ? props.selectProps.valueField :  props.selectProps.idField
         props.selectProps.textField = props.selectProps.textField
             ? props.selectProps.textField
             : props.selectProps.valueField
@@ -64,7 +89,7 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
             filtered,
             props.selectProps.valueField,
             props.selectProps.textField,
-            props.selectProps.icon,
+            props.selectProps.iconField,
             props.selectProps.idField,
         )
 
@@ -76,11 +101,15 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
                 filtered,
                 props.selectProps.valueField,
                 props.selectProps.textField,
-                props.selectProps.icon,
+                props.selectProps.iconField,
                 props.selectProps.idField,
             )
         } else {
-            value = options.find((o) => o.value === value)
+            if (value && typeof value === 'object') {
+                value = options.find((o) => o.value === value[props.selectProps.valueField])
+            } else {
+                value = options.find((o) => o.value === value)
+            }
         }
     }
 
@@ -90,6 +119,8 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
         props.maxValue = Number(props.maxValue)
     }
 
+
+
     const selectedProps = props.selectProps ? Object.assign(props.selectProps, { options }) : undefined
 
     const emptyState = {
@@ -98,6 +129,8 @@ export const init = (props: IFormControlAppProps): IFormControlAppProps => {
         emptyMessage: 'Нет данных',
         placeholder: props.as === 'select' ? 'Выбрать...' : '',
         onChange: () => {
+            return ''
+        },  onChangeErrors: () => {
             return ''
         },
     }

@@ -7,4 +7,8 @@
   height: 100%;
   width: 100%;
   background-color: alpha(Opacity=70);
+
+  > div {
+    position: fixed !important;
+  }
 }

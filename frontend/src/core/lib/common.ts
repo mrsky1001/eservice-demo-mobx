@@ -27,12 +27,12 @@ export const listToOptions = (
     list: any[],
     valueField: string,
     textField = valueField,
-    icon?: string,
+    iconField?: string,
     idField = 'id',
 ): OptionSelect[] => {
     if (typeof list[0] === 'object') {
         return list.map((obj) => {
-            return new OptionSelect({ id: obj[idField], label: obj[textField], value: obj[valueField], icon: icon })
+            return new OptionSelect({ id: obj[idField], label: obj[textField], value: obj[valueField], icon: obj[iconField] })
         })
     } else {
         return list.map((elem) => {

@@ -2,11 +2,11 @@
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
 
-import axios, { AxiosError, AxiosResponse } from 'axios'
+import axios, {AxiosError, AxiosResponse} from 'axios'
 import coreUrls from '../core-urls'
 import history from '../history/create-browser-history'
 import Toaster from '../toaster/toaster'
-import { toast } from 'react-toastify'
+import {toast} from 'react-toastify'
 
 export const isAuthorized = async (): Promise<boolean> => {
     return (await axios.get(coreUrls.PROBE_AUTH)).status === 200
@@ -32,21 +32,21 @@ export const keepalive = (): void => {
     resetTimer()
 }
 
-export const handlerSuccess = (res: AxiosResponse, handler?: (val: any) => any, isSuccessMessage = true): void => {
+export const handlerSuccess = (res: AxiosResponse, handler?: (val: any) => any, isSuccessMessage = true, isShowMessage = true): void => {
     if (res.data.success) {
         handler && handler(res.data.data)
 
-        if (res.config.method !== 'get' && isSuccessMessage) {
-            new Toaster({ msg: 'Операция выполнена успешно', type: toast.TYPE.SUCCESS })
+        if (res.config.method !== 'get' && isSuccessMessage && isShowMessage) {
+            new Toaster({msg: 'Операция выполнена успешно', type: toast.TYPE.SUCCESS})
         }
-    } else {
+    } else if (isShowMessage) {
         throw new Error(res.data.message)
     }
 }
 
 export const handlerError = (error: AxiosError): void => {
     console.error(error)
-    new Toaster({ msg: error.message, type: toast.TYPE.ERROR })
+    new Toaster({msg: error.message, type: toast.TYPE.ERROR})
 
     if (error.response !== undefined)
         if (error.response.status === 401) {

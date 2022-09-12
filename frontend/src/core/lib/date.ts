@@ -17,4 +17,4 @@ export const toDatePicker = (value: string): Date => {
     return value ? moment(value, formatDatePicker).toDate() : null
 }
 
-export default { toDatePicker, toDateBackend, formatDateToPicker }
+export default {toDatePicker, toDateBackend, formatDateToPicker}

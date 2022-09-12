@@ -2,7 +2,7 @@
  * Copyright (c) Kolyada Nikita Vladimirovich <nikita.nk16@yandex.ru>  23.08.2021, 16:55
  */
 
-import { toDatePicker } from '../../../lib/date'
+import {toDatePicker} from '../../../lib/date'
 
 interface IValidationFormProps {
     value: string | number
@@ -18,7 +18,7 @@ interface IValidationFormProps {
 }
 
 export default (props: IValidationFormProps): string[] => {
-    const controlTypes = { TEXT: 'text', NUMBER: 'number', PASSWORD: 'password', EMAIL: 'email', DATE: 'date' }
+    const controlTypes = {TEXT: 'text', NUMBER: 'number', PASSWORD: 'password', EMAIL: 'email', DATE: 'date'}
     const errors: string[] = []
     const templatesErrors = {
         requiredError: 'Обязательное поле!',
@@ -27,6 +27,7 @@ export default (props: IValidationFormProps): string[] => {
         minValueError: `Поле должно содержать значение не менее (${props.minValue})!`,
         maxValueError: `Поле должно содержать значение не более (${props.maxValue})!`,
         emailError: 'Поле не соответствует типу электронной почты!',
+        urlError: 'Поле не соответствует типу URL-ссылки!',
     }
 
     props.required && String(props.value).length === 0 && errors.push(templatesErrors.requiredError)
@@ -55,6 +56,11 @@ export default (props: IValidationFormProps): string[] => {
         if (typeof props.maxValue === 'number' && props.value > props.maxValue) {
             errors.push(templatesErrors.maxValueError)
             props.isHardMinMaxValue && (props.value = props.maxValue)
+        }
+    } else if (props.type === 'url') {
+        const reg = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+        if (!reg.test(String(props.value))) {
+            errors.push(templatesErrors.urlError)
         }
     }
 
