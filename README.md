@@ -1,6 +1,6 @@
 # About eservice-demo-mobx
 ## v2.0.5
-The core of the frontend for microservices based on ReactJS+Mobx.
+Examples for use core of the frontend for microservices based on ReactJS+Mobx.
   
 ### Frontend
 Demo on https://omsueservice.github.io/eservice-demo-mobx/
